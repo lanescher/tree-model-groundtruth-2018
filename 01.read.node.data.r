@@ -1,37 +1,58 @@
-# read in node names to find corresponding nodes in multiple models
+# read in marker data
+
+# INPUT BRANCH NUMBER AND MODEL DATES
+branch <- "01"
+date1 <- "171221"
+date2 <- "180109"
 
 # read in files
-##### change branch number here
-branch10.171221 <- read.csv("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/171221_branch13.txt", sep = ",", header = TRUE, skip = 1)
-branch10.180109 <- read.csv("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/180109_branch13.txt", sep = ",", header = TRUE, skip = 1)
+model1 <- read.csv(paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/", date1, "_branch", branch, ".txt", 
+                         sep = ""), sep = ",", header = TRUE, skip = 1)
+model2 <-read.csv(paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/", date2, "_branch", branch, ".txt", 
+                        sep = ""), sep = ",", header = TRUE, skip = 1)
 
-# remove unneeded columns
-branch10.171221[,2:8] <- NULL
-branch10.180109[,2:8] <- NULL
+# get rid of columns that you don't need
+model1 <- model1[,-c(2:8)]
+model2 <- model2[,-c(2:8)]
 
 # find matching nodes
-branch10all <- merge(branch10.171221, branch10.180109, by = "X.Label", incomparables = TRUE)
-branch10all$node <- gsub("\\.", "*", branch10all$X.Label)
-branch10all$node <- gsub("-", ".", branch10all$node)
-# first column has all matching points
+overlap <- merge(model1, model2, by = "X.Label")
+overlap$node <- gsub("\\.", "*", overlap$X.Label)
+overlap$node <- gsub("-", ".", overlap$node)
+# the last column of this dataframe lists all the matching nodes
 
-# find first date only
-branch10.171221.only <- setdiff(branch10.171221$X.Label, branch10all$X.Label)
-branch10.171221.only <- as.data.frame(branch10.171221.only)
-branch10.171221.only$node <- gsub("\\.", "*", branch10.171221.only[,1])
-branch10.171221.only$node <- gsub("-", ".", branch10.171221.only$node)
+# find the nodes that are only in model1
+model1.only <- setdiff(model1$X.Label, overlap$X.Label)
+model1.only <- as.data.frame(model1.only)
+model1.only$node <- gsub("\\.", "*", model1.only[,1])
+model1.only$node <- gsub("-", ".", model1.only$node)
+# the last column of this dataframe lists all the matching nodes
 
-# find second date only
-branch10.180109.only <- setdiff(branch10.180109$X.Label, branch10all$X.Label)
-branch10.180109.only <- as.data.frame(branch10.180109.only)
-branch10.180109.only$node <- gsub("\\.", "*", branch10.180109.only[,1])
-branch10.180109.only$node <- gsub("-", ".", branch10.180109.only$node)
+# find the nodes that are only in model2
+model2.only <- setdiff(model2$X.Label, overlap$X.Label)
+model2.only <- as.data.frame(model2.only)
+model2.only$node <- gsub("\\.", "*", model2.only[,1])
+model2.only$node <- gsub("-", ".", model2.only$node)
+# the last column of this dataframe lists all the matching nodes
 
-# write all files
+# make new dataframe with two columns, node and label, to combine with dfs for each model
+both <- as.data.frame(overlap$node)
+both$label <- "both"
+names(both) <- c("node", "label")
+# make new dataframe with same columns for model 1
+model1.only.list <- as.data.frame(model1.only$node)
+model1.only.list$label <- date1
+names(model1.only.list) <- c("node", "label")
+# make new dataframe with same columns for model 2
+model2.only.list <- as.data.frame(model2.only$node)
+model2.only.list$label <- date2
+names(model2.only.list) <- c("node", "label")
 
-##### change branch number here
-write.csv(branch10all, file = "C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/branch13_both.csv")
-write.csv(branch10.171221.only, file = "C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/branch13_171221.csv")
-write.csv(branch10.180109.only, file = "C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/branch13_180109.csv")
+# combine dfs into one
+final <- rbind(both, model1.only.list, model2.only.list)
+
+# write new csv with all nodes listed and label stating which models it is present in
+write.csv(final, file = paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/branch", branch, "_merged.csv", sep = ""))
+
 
 
