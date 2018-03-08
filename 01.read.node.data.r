@@ -5,6 +5,7 @@
 branch10.171221 <- read.csv("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/171221_branch13.txt", sep = ",", header = TRUE, skip = 1)
 branch10.180109 <- read.csv("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/180109_branch13.txt", sep = ",", header = TRUE, skip = 1)
 
+# remove unneeded columns
 branch10.171221[,2:8] <- NULL
 branch10.180109[,2:8] <- NULL
 
@@ -14,13 +15,13 @@ branch10all$node <- gsub("\\.", "*", branch10all$X.Label)
 branch10all$node <- gsub("-", ".", branch10all$node)
 # first column has all matching points
 
-# find one date only
+# find first date only
 branch10.171221.only <- setdiff(branch10.171221$X.Label, branch10all$X.Label)
 branch10.171221.only <- as.data.frame(branch10.171221.only)
 branch10.171221.only$node <- gsub("\\.", "*", branch10.171221.only[,1])
 branch10.171221.only$node <- gsub("-", ".", branch10.171221.only$node)
 
-# find other date only
+# find second date only
 branch10.180109.only <- setdiff(branch10.180109$X.Label, branch10all$X.Label)
 branch10.180109.only <- as.data.frame(branch10.180109.only)
 branch10.180109.only$node <- gsub("\\.", "*", branch10.180109.only[,1])
