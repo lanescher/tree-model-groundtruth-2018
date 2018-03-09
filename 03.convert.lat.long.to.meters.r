@@ -1,3 +1,5 @@
+# requires date1_centerpoint and date2_centerpoint from script 02.
+
 # this script:
 # 1. reads in location data
 # 2. converts lat/long to meters
