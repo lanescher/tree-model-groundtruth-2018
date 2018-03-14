@@ -1,14 +1,17 @@
 # read in marker data
 
+setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
+
 # INPUT BRANCH NUMBER AND MODEL DATES
+tree <- "memorialoak"
 branch <- "01"
 date1 <- "171221"
 date2 <- "180109"
 
 # read in files
-model1 <- read.csv(paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/", date1, "_branch", branch, ".txt", 
+model1 <- read.csv(paste("DATA/", tree, "_", date1, "_branch", branch, ".txt", 
                          sep = ""), sep = ",", header = TRUE, skip = 1)
-model2 <-read.csv(paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/", date2, "_branch", branch, ".txt", 
+model2 <-read.csv(paste("DATA/", tree, "_", date2, "_branch", branch, ".txt", 
                         sep = ""), sep = ",", header = TRUE, skip = 1)
 
 # get rid of columns that you don't need
@@ -52,7 +55,7 @@ names(model2.only.list) <- c("node", "label")
 final <- rbind(both, model1.only.list, model2.only.list)
 
 # write new csv with all nodes listed and label stating which models it is present in
-write.csv(final, file = paste("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/branch", branch, "_merged.csv", sep = ""))
+write.csv(final, file = paste("DATA/", tree, "_", branch, "_merged.csv", sep = ""))
 
 
 
