@@ -24,10 +24,14 @@ source("SCRIPTS/05.find.node.theta.r")
 
 # merge data, make new columns with differences
 all.loc.data <- merge(all.loc.data.date1, all.loc.data.date2, all.x = TRUE, by = "X.Label")
+all.loc.data <- merge(all.loc.data, all.loc.data.date2, all.x = TRUE, by = "X.Label")
+
 all.loc.data$diff.hor.dist <- all.loc.data$hor.dist.x - all.loc.data$hor.dist.y
 all.loc.data$diff.vert.dist <- all.loc.data$vert.dist.x - all.loc.data$vert.dist.y
 all.loc.data$diff.center.dist <- all.loc.data$center.dist.x - all.loc.data$center.dist.y
 all.loc.data$diff.theta <- all.loc.data$thetadeg.x - all.loc.data$thetadeg.y
+
+all.loc.data <- merge(all.loc.data, final, by = "X.Label")
 
 # write file with raw merged data
 write.csv(all.loc.data, paste("DATA/OUTPUT/", tree, "_node_locations.csv", sep = ""))
