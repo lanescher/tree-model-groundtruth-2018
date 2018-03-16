@@ -1,15 +1,10 @@
 # requires date1_centerpoint and date2_centerpoint from script 02.
 
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
 
 # this script:
 # 1. reads in location data
 # 2. converts lat/long to meters
 library(rgl)
-
-tree <- "memorialoak"
-dates <- c("171221", "180109")
-branches <- c("01", "08", "09", "10", "13")
 
 # convert centerpoint to meters date1
 date1_centerpointdf$reflat <- date1_centerpoint[2]
@@ -59,7 +54,7 @@ all.loc.data.date1 <- data.frame(Node = character(),
 # loop that adds all location data to df for date[1]
 i <- 1
 for (i in 1:length(branches)) {
-  loc.data <- read.csv(paste("DATA/", tree, "_", 
+  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
                            dates[1], "_branch", branches[i], ".txt", sep = ""),
                      skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
@@ -75,7 +70,7 @@ all.loc.data.date2 <- data.frame(Node = character(),
 # loop that adds all location data to df for DATE 2
 i <- 1
 for (i in 1:length(branches)) {
-  loc.data <- read.csv(paste("DATA/", tree, "_", 
+  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
                              dates[2], "_branch", branches[i], ".txt", sep = ""),
                        skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
@@ -124,7 +119,7 @@ all.loc.data.date2$m.long <- 111412.84 *
 
 all.loc.data.date2$meterslat <- all.loc.data.date2$Y_est * all.loc.data.date2$m.lat
 all.loc.data.date2$meterslong <- all.loc.data.date2$X_est * all.loc.data.date2$m.long
-all.loc.data.date1$metersalt <- all.loc.data.date2$Z_est
+all.loc.data.date2$metersalt <- all.loc.data.date2$Z_est
 
 
 
@@ -152,11 +147,10 @@ all.loc.data.date1$metersalt <- all.loc.data.date2$Z_est
 
 
 # plot all points date 1
-plot3d(x = targets$meterslong, y = targets$meterslat, z = targets$metersalt, col = "green")
-aspect3d(x = "iso")
-points3d(x = all.loc.data.date1$meterslong, 
+plot3d(x = all.loc.data.date1$meterslong, 
        y = all.loc.data.date1$meterslat, 
        z = all.loc.data.date1$metersalt)
+aspect3d(x = "iso")
 
 # plot all points date 2
 
