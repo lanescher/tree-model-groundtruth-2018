@@ -11,6 +11,45 @@ tree <- "memorialoak"
 dates <- c("171221", "180109")
 branches <- c("01", "08", "09", "10", "13")
 
+# convert centerpoint to meters date1
+date1_centerpointdf$reflat <- date1_centerpoint[2]
+date1_centerpointdf$reflong <- date1_centerpoint[1]
+date1_centerpointdf$rlat <- date1_centerpointdf$reflat * pi/180
+
+# find meters per degree latitude at centerpoint
+date1_centerpointdf$m.lat <- 111132.92 - 559.82 * 
+  cos(2 * date1_centerpointdf$rlat) + 1.175 * 
+  cos(4 * date1_centerpointdf$rlat)
+
+# find meters per degree longitude at centerpoint
+date1_centerpointdf$m.long <- 111412.84 * 
+  cos(date1_centerpointdf$rlat) - 93.5 * 
+  cos(3 * date1_centerpointdf$rlat)
+
+date1_centerpointdf$meterslat <- date1_centerpointdf$Y_est * date1_centerpointdf$m.lat
+date1_centerpointdf$meterslong <- date1_centerpointdf$X_est * date1_centerpointdf$m.long
+date1_centerpointdf$metersalt <- date1_centerpointdf$Z_est
+
+# convert centerpoint to meters date2
+date2_centerpointdf$reflat <- date2_centerpoint[2]
+date2_centerpointdf$reflong <- date2_centerpoint[1]
+date2_centerpointdf$rlat <- date2_centerpointdf$reflat * pi/180
+
+# find meters per degree latitude at centerpoint
+date2_centerpointdf$m.lat <- 111132.92 - 559.82 * 
+  cos(2 * date2_centerpointdf$rlat) + 1.175 * 
+  cos(4 * date2_centerpointdf$rlat)
+
+# find meters per degree longitude at centerpoint
+date2_centerpointdf$m.long <- 111412.84 * 
+  cos(date2_centerpointdf$rlat) - 93.5 * 
+  cos(3 * date2_centerpointdf$rlat)
+
+date2_centerpointdf$meterslat <- date2_centerpointdf$Y_est * date2_centerpointdf$m.lat
+date2_centerpointdf$meterslong <- date2_centerpointdf$X_est * date2_centerpointdf$m.long
+date2_centerpointdf$metersalt <- date2_centerpointdf$Z_est
+
+
 # make empty df for ALL BRANCHES in date[1]
 all.loc.data.date1 <- data.frame(Node = character(), 
                            X_est = numeric(), 
@@ -44,7 +83,7 @@ for (i in 1:length(branches)) {
   i <- i + 1
 }
 
-#### Only Branch 1 right now
+#### Only Date 1 right now
 
 # use date1_centerpoint from 03.findcenterpoint script
 all.loc.data.date1$reflat <- date1_centerpoint[2]

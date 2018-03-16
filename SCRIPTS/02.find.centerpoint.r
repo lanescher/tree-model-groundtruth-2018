@@ -43,6 +43,8 @@ z <- (date1_center.new[1,3] * as.numeric(dirnum2[3]) -
 date1_centerpoint <- c(x, y, z)
 date1_center.new[5,] <- date1_centerpoint
 
+date1_centerpointdf <- as.data.frame(date1_center.new[5,])
+
 
 # find centerpoint for date 2
 date2_center <- read.csv(paste("DATA/INPUT/", tree, "_", dates[2], "_center.txt",
@@ -83,3 +85,4 @@ z <- (date2_center.new[1,3] * as.numeric(dirnum2[3]) -
 date2_centerpoint <- c(x, y, z)
 date2_center.new[5,] <- date2_centerpoint
 
+date2_centerpointdf <- as.data.frame(date2_center.new[5,])

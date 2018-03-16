@@ -12,9 +12,9 @@ all.loc.data.date1$vert.dist <- all.loc.data.date1$metersalt - all.loc.data.date
 center.dist <- function(centerpoint, nodes) {
   distances <- c(1:length(nodes[,1]))
   for (i in 1:length(nodes[,1])) {
-    distance <- sqrt((centerpoint[1, 9] - nodes[i,10]) ^2 +
-                       (centerpoint[1, 10] - nodes[i,11]) ^2 + 
-                       (centerpoint[1, 11] - nodes[i,12]) ^2)
+    distance <- sqrt((centerpoint[1, 7] - nodes[i,10]) ^2 +
+                       (centerpoint[1, 8] - nodes[i,11]) ^2 + 
+                       (centerpoint[1, 9] - nodes[i,12]) ^2)
     distances[i] <- distance
     i <- i + 1
   }
@@ -32,7 +32,7 @@ hor.dist <- function(centerpoint, nodes) {
   for (i in 1:length(nodes[,1])) {
     distance <- sqrt((centerpoint[1, 9] - nodes[i,10]) ^2 +
                        (centerpoint[1, 10] - nodes[i,11]) ^2 + 
-                       (centerpoint[1, 11] - nodes[i,13]) ^2)
+                       (centerpoint[1, 11] - nodes[i,12]) ^2)
     distances[i] <- distance
     i <- i + 1
   }
