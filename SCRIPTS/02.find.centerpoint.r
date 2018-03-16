@@ -1,10 +1,5 @@
 # read in centerpointdata and find center point
 
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
-
-tree <- "memorialoak"
-dates <- c("171221", "180109")
-
 # find centerpoint for date 1
 date1_center <- read.csv(paste("DATA/INPUT/", tree,"_", dates[1], "_center.txt",
                                sep = ""),
