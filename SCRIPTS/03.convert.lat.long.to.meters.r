@@ -80,7 +80,7 @@ for (i in 1:length(branches)) {
 
 #### Only Date 1 right now
 
-# use date1_centerpoint from 03.findcenterpoint script
+# use date1_centerpoint from 02.find.centerpoint script
 all.loc.data.date1$reflat <- date1_centerpoint[2]
 all.loc.data.date1$reflong <- date1_centerpoint[1]
 all.loc.data.date1$rlat <- all.loc.data.date1$reflat * pi/180
