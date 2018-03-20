@@ -2,6 +2,7 @@
 
 tree <- "memorialoak"
 branches <- c("01", "08", "09", "10", "13")
+branches2 <- c("03", "05")
 dates <- c("171221", "180109")
 
 all.measure <- data.frame(node = factor(),
@@ -17,6 +18,23 @@ all.measure <- data.frame(node = factor(),
                                  mainlength.date2 = numeric(),
                                  branchdiameter.date2 = numeric(),
                                  branchlength.date2 = numeric())
+
+
+i <- 1
+for (i in 1:length(branches2)) {
+  meas <- read.csv(paste("DATA/INPUT/branch selection_", tree, " - primary", 
+                         branches2[i], ".csv", sep = ""),
+                   col.names = c("node", "is.in", "random", "main.nodeto", "branch.nodeto", 
+                                 "maindiameter.date1", "mainlength.date1",
+                                 "branchdiameter.date1", "branchlength.date1",
+                                 "maindiameter.date2", "mainlength.date2",
+                                 "branchdiameter.date2", "branchlength.date2"))
+  all.measure <- rbind(all.measure, meas)
+  i <- i + 1
+}
+
+all.measure$node <- gsub("[.]", "*", all.measure$node)
+all.measure$node <- gsub("[-]", ".", all.measure$node)
 
 i <- 1
 for (i in 1:length(branches)) {
