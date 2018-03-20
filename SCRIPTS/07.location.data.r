@@ -6,7 +6,7 @@ setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
 
 # enter tree, branch, and date info
 tree <- "memorialoak"
-branches <- c("01", "08", "09", "10", "13")
+branches <- c("01", "03", "05", "08", "09", "10", "13")
 dates <- c("171221", "180109")
 
 
