@@ -1,11 +1,59 @@
 # start testing how consistent measurements are from one model to another
-
+getwd()
 library(ggplot2)
+source("SCRIPTS/10.define.error.functions.r")
 
 # calculate percent error between models
-all.data$error <- abs(all.data$value.date1 - all.data$value.date2)
-all.data$perror <- all.data$error / all.data$value.date1
+all.data$error <- all.data$value.date1 - all.data$value.date2
+all.data$perror <- all.data$error / all.data$value.date2
 
+rmse(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA")])
+
+rmse(all.data$error[which(all.data$measurement == "length"
+                          & all.data$error != "NA")])
+
+rmse(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA" 
+                          & all.data$endpoint != "end")])
+
+mean(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA")])
+
+mean(all.data$error[which(all.data$measurement == "length"
+                          & all.data$error != "NA")])
+
+mean(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA" 
+                          & all.data$endpoint != "end")])
+
+mae(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA")])
+
+mae(all.data$error[which(all.data$measurement == "length"
+                          & all.data$error != "NA")])
+
+mae(all.data$error[which(all.data$measurement == "diameter"
+                          & all.data$error != "NA" 
+                          & all.data$endpoint != "end")])
+
+summary(aov(all.data$perror[which(all.data$perror != "NA" & 
+                                    all.data$perror != Inf & 
+                                    all.data$measurement == "length" &
+                                    all.data$endpoint == "end")] ~ 
+              all.data$vert.dist[which(all.data$perror != "NA" &
+                                         all.data$perror != Inf & 
+                                         all.data$measurement == "length" &
+                                         all.data$endpoint == "end")]))
+
+plot(all.data$perror[which(all.data$perror != "NA" & all.data$perror != Inf & 
+                             all.data$measurement == "length")] ~ 
+       all.data$theta[which(all.data$perror != "NA" & all.data$perror != Inf & 
+                                  all.data$measurement == "length")])
+lines(y = all.data$perror[which(all.data$perror != "NA" & all.data$perror != Inf)], 
+            x = all.data$vert.dist[which(all.data$perror != "NA" & all.data$perror != Inf)])
+
+plot(x = all.data$theta, y = all.data$center.dist)
 
 ### PLOTTING
 title <- "percent error"
