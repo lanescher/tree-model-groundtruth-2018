@@ -1,5 +1,7 @@
 # reshape measurement data
 
+library(reshape2)
+
 all.data <- melt(all.data, id.vars = c("node", "is.in.x", 
                                    "vert.dist", "center.dist", "hor.dist", "theta", 
                                    "main.nodeto", "branch.nodeto"))
@@ -43,3 +45,18 @@ all.data$endpoint[which(all.data$branch == "main" &
                                all.data$main.nodeto == "end")] <- "end"
 all.data$endpoint[which(all.data$branch == "branch" & 
                                all.data$branch.nodeto == "end")] <- "end"
+
+
+
+date1data <- all.data[which(all.data$date == "date1"),]
+date2data <- all.data[which(all.data$date == "date2"),]
+
+
+all.data <- merge(date1data, date2data, by = c("node", "branch", "measurement", "endpoint",
+                                               "is.in.x", "vert.dist", "center.dist", "hor.dist",
+                                               "theta", "main.nodeto", "branch.nodeto"))
+
+all.data$value.date1 <- all.data$value.x
+all.data$value.date2 <- all.data$value.y
+all.data <- all.data[,-c(12:17)]
+
