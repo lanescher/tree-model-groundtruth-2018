@@ -1,7 +1,7 @@
 # define RMSE and MAE functions
 
 rmse <- function(error) {
-  sqrt(mean(error^2))
+  sqrt(mean(error^2, na.rm = TRUE))
 }
 
 
