@@ -78,10 +78,12 @@ all.data <- merge(date1data, date2data, by = c("node", "branch", "measurement", 
                                                "is.in.x", "vert.dist", "center.dist", "hor.dist",
                                                "theta", "main.nodeto", "branch.nodeto"))
 
+all.data <- merge(all.data, realdata, by = c("node", "branch", "measurement", "endpoint",
+                                               "is.in.x", "vert.dist", "center.dist", "hor.dist",
+                                               "theta", "main.nodeto", "branch.nodeto"))
 
-
-all.data$value.date1 <- all.data$value.x
-all.data$value.date2 <- all.data$value.y
-all.data$value.real <- all.data$value
-all.data <- all.data[,-c(8:16)]
+all.data$value.date1 <- as.numeric(all.data$value.x)
+all.data$value.date2 <- as.numeric(all.data$value.y)
+all.data$value.real <- as.numeric(all.data$value)
+all.data <- all.data[,-c(12:20)]
 

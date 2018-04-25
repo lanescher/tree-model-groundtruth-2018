@@ -1,10 +1,11 @@
 # read in measurements
 
-setwd("/Users/lanescher/Documents/GitHub/tree-model-groundtruth-2018")
+setwd("C:/Users/lscher/Documents/GitHub/tree-model-groundtruth-2018")
+
 
 tree <- "memorialoak"
 branches <- c("01")
-branches2 <- c("03")
+branches2 <- c("03", "05")
 dates <- c("171221", "180109")
 
 all.measure <- data.frame(node = factor(),
@@ -58,21 +59,23 @@ real.measure <- data.frame(node = factor(),
                            main.nodeto = factor(),
                            branch.nodeto = factor(),
                            maindiameter.real = numeric(),
+                           maindiameterbroken.real = factor(),
                            mainlength.real = numeric(),
-                           mainbroken.real = factor(),
+                           mainlengthbroken.real = factor(),
                            branchdiameter.real = numeric(),
+                           branchdiameterbroken.real = factor(),
                            branchlength.real = numeric(),
-                           branchbroken.real = factor())
+                           branchlengthbroken.real = factor())
 
 i <- 1
 for (i in 1:length(branches2)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
                          branches2[i], ".csv", sep = ""),
                    col.names = c("node", "main.nodeto", "branch.nodeto", 
-                                 "maindiameter.real", "mainlength.real",
-                                 "mainbroken.real",
-                                 "branchdiameter.real", "branchlength.real",
-                                 "branchbroken.real"))
+                                 "maindiameter.real", "maindiameterbroken.real",
+                                 "mainlength.real", "mainlengthbroken.real",
+                                 "branchdiameter.real", "branchdiameterbroken.real",
+                                 "branchlength.real", "branchlengthbroken.real"))
   real.measure <- rbind(real.measure, meas)
   i <- i + 1
 }
@@ -85,10 +88,10 @@ for (i in 1:length(branches)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
                          branches[i], ".csv", sep = ""),
                    col.names = c("node", "main.nodeto", "branch.nodeto", 
-                                 "maindiameter.real", "mainlength.real",
-                                 "mainbroken.real",
-                                 "branchdiameter.real", "branchlength.real",
-                                 "branchbroken.real"))
+                                 "maindiameter.real", "maindiameterbroken.real",
+                                 "mainlength.real", "mainlengthbroken.real",
+                                 "branchdiameter.real", "branchdiameterbroken.real",
+                                 "branchlength.real", "branchlengthbroken.real"))
   real.measure <- rbind(real.measure, meas)
   i <- i + 1
 }
@@ -96,7 +99,6 @@ for (i in 1:length(branches)) {
 
 # merge real with model measurements
 all.measure <- merge(all.measure, real.measure, all = TRUE)
- 
 
 # merge with location data
 loc.data$node <- gsub("[.]", "*", loc.data$node)
@@ -107,4 +109,4 @@ all.data <- merge(loc.data, all.measure, by = "node")
 all.data$is.in.y <- NULL
 all.data$random <- NULL
 
-all.data <- all.measure
+
