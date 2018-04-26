@@ -2,8 +2,6 @@
 
 library(reshape2)
 
-all.data <- melt(all.data, id.vars = c("node", "is.in",
-                                       "main.nodeto", "branch.nodeto"))
 
 all.data <- melt(all.data, id.vars = c("node", "is.in.x", 
                                    "vert.dist", "center.dist", "hor.dist", "theta", 
@@ -68,10 +66,6 @@ date1data <- all.data[which(all.data$date == "date1"),]
 date2data <- all.data[which(all.data$date == "date2"),]
 realdata <- all.data[which(all.data$date == "real"),]
 
-all.data <- merge(date1data, date2data, by = c("node", "branch", "measurement", "endpoint",
-                                               "is.in", "main.nodeto", "branch.nodeto"))
-all.data <- merge(all.data, realdata, by = c("node", "branch", "measurement", "endpoint",
-                                             "is.in", "main.nodeto", "branch.nodeto"))
 
 
 all.data <- merge(date1data, date2data, by = c("node", "branch", "measurement", "endpoint",
