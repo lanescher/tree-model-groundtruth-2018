@@ -6,5 +6,5 @@ rmse <- function(error) {
 
 
 mae <- function(error) {
-  mean(abs(error))
+  mean(abs(error), na.rm = TRUE)
 }
