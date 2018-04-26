@@ -51,13 +51,13 @@ mean(abs(all.data$error.date2[which(all.data$measurement == "length" &
                                       all.data$endpoint == "branch")]), na.rm = TRUE)
 
 
-plot(x = all.data$value.date1[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) <= 5)], 
-     y = all.data$value.real[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) <= 5)],
+plot(x = all.data$value.date1[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) >= 5)], 
+     y = all.data$value.real[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) >= 5)],
      col = "blue")
 points(x = all.data$value.date2[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) >= 5)], 
        y = all.data$value.real[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) >= 5)],
        col = "red")
-
+rmse(all.data$perror.date1[which(all.data$measurement == "diameter" & as.numeric(all.data$value.real) >= 10)])
 
 plot(x = all.data$value.date1[which(all.data$measurement == "length")], y = all.data$value.real[which(all.data$measurement == "length")])
 points(x = all.data$value.date2[which(all.data$measurement == "length")], y = all.data$value.real[which(all.data$measurement == "length")])
@@ -68,7 +68,8 @@ plot(x = all.data$value.date1[which(all.data$value.real > 5)], y = all.data$valu
 points(x = all.data$value.date2[which(all.data$value.real > 5)], y = all.data$value.real[which(all.data$value.real > 5)], col = "blue")
 
 
-summary(lm(all.data$value.real[which(all.data$value.real < 5)] ~ all.data$value.date1[which(all.data$value.real < 5)]))
+summary(lm(all.data$value.real[which(all.data$value.real < 5 & all.data$measurement == "diameter")] ~ 
+             all.data$value.date1[which(all.data$value.real < 5 & all.data$measurement == "diameter")]))
 
 
 plot(x = all.data$value.date1[which(all.data$measurement == "length" & all.data$endpoint == "branch")], 
@@ -84,4 +85,4 @@ plot(x = all.data$hor.dist[which(all.data$measurement == "diameter")],
      y = all.data$perror.date1[which(all.data$measurement == "diameter")])
 
 mean(all.data$perror.date1[which(all.data$measurement == "diameter" & all.data$value.real > 25)], na.rm = TRUE)
-rmse(all.data$perror.date1[which(all.data$measurement == "diameter" & all.data$value.real > 4.5)])
+rmse(all.data$perror.date1[which(all.data$measurement == "length" & all.data$value.real > 175 & all.data$endpoint == "branch")])
