@@ -4,7 +4,7 @@ setwd("C:/Users/lscher/Documents/GitHub/tree-model-groundtruth-2018")
 
 
 tree <- "memorialoak"
-branches <- c("01")
+branches <- c("01", "08", "13")
 branches2 <- c("03", "05")
 dates <- c("171221", "180109")
 
