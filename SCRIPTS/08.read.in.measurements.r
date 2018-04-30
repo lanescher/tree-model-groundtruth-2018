@@ -2,6 +2,8 @@
 
 setwd("C:/Users/lscher/Documents/GitHub/tree-model-groundtruth-2018")
 
+# read in location data
+source("SCRIPTS/07.location.data.r")
 
 tree <- "memorialoak"
 branches <- c("01", "08", "13")
