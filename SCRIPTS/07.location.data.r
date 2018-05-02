@@ -15,10 +15,6 @@ source("SCRIPTS/04.find.node.distances.r")
 source("SCRIPTS/05.find.node.theta.r")
 
 
-# enter tree, branch, and date info
-branches <- c(branches, branches2)
-
-
 
 # merge data, make new columns with differences
 all.loc.data <- merge(all.loc.data.date1, all.loc.data.date2, all = TRUE, by = "X.Label")
