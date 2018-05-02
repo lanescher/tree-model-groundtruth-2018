@@ -1,9 +1,19 @@
 # model vs real analysis
 
+# set wd
+setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
+
+# INPUT BRANCH NUMBER AND MODEL DATES
+tree <- "memorialoak"
+branch <- c("01", "03", "05", "08", "09", "10", "13")
+date1 <- "171221"
+date2 <- "180109"
+
+
 library(ggplot2)
 
 # read in all data
-source("SCRIPTS/12.model.vs.real.r")
+source("SCRIPTS/12.calculate.model.real.error.r")
 
 # read in error functions
 source("SCRIPTS/10.define.error.functions.r")

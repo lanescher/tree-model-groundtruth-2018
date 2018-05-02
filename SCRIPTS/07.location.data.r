@@ -1,14 +1,6 @@
 # run all scripts to produce node location data and photo location data.
 # write one file with node location data and one file with photo location data.
 
-# set wd
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
-
-# enter tree, branch, and date info
-tree <- "memorialoak"
-branches <- c("01", "03", "05", "08", "13")
-dates <- c("171221", "180109")
-
 
 # source file to find centerpoint in both dates
 source("SCRIPTS/02.find.centerpoint.r")
@@ -21,6 +13,12 @@ source("SCRIPTS/04.find.node.distances.r")
 
 # source file to find theta between centerpoint and nodes
 source("SCRIPTS/05.find.node.theta.r")
+
+
+# enter tree, branch, and date info
+branches <- c(branches, branches2)
+
+
 
 # merge data, make new columns with differences
 all.loc.data <- merge(all.loc.data.date1, all.loc.data.date2, all = TRUE, by = "X.Label")

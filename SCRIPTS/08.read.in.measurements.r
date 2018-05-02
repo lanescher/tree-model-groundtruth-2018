@@ -1,14 +1,9 @@
 # read in measurements
 
-setwd("C:/Users/lscher/Documents/GitHub/tree-model-groundtruth-2018")
-
 # read in location data
 source("SCRIPTS/07.location.data.r")
 
-tree <- "memorialoak"
-branches <- c("01", "08", "13")
-branches2 <- c("03", "05")
-dates <- c("171221", "180109")
+
 
 all.measure <- data.frame(node = factor(),
                                  is.in = character(),
@@ -72,7 +67,7 @@ real.measure <- data.frame(node = factor(),
 i <- 1
 for (i in 1:length(branches2)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
-                         branches2[i], ".csv", sep = ""),
+                         branches2[i], ".csv", sep = ""), skip = 3,
                    col.names = c("node", "main.nodeto", "branch.nodeto", 
                                  "maindiameter.real", "maindiameterbroken.real",
                                  "mainlength.real", "mainlengthbroken.real",
@@ -88,7 +83,7 @@ real.measure$node <- gsub("[-]", ".", real.measure$node)
 i <- 1
 for (i in 1:length(branches)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
-                         branches[i], ".csv", sep = ""),
+                         branches[i], ".csv", sep = ""), skip = 3,
                    col.names = c("node", "main.nodeto", "branch.nodeto", 
                                  "maindiameter.real", "maindiameterbroken.real",
                                  "mainlength.real", "mainlengthbroken.real",
