@@ -118,6 +118,31 @@ ggplot(data = all.rsqrs,
 
 
 
+all.data.diameter <- all.data[which(all.data$measurement == "diameter"),]
+all.data.length <- all.data[which(all.data$measurement == "length"),]
+m.all.data <- merge(all.data.diameter, all.data.length, by = c("node", "branch", "endpoint",
+                                                               "is.in", "vert.dist", "center.dist", "hor.dist",
+                                                               "theta", "main.nodeto", "branch.nodeto"))
+
+ggplot(data = subset(all.data[which(m.all.data$value.real.x > 5 &
+                                      m.all.data$endpoint == "branch" & 
+                                      m.all.data$broken.real.y != "b" &
+                                      m.all.data$broken.real.y != "bm"),]),
+       aes(x = m.all.data$value.avg.y[which(m.all.data$value.real.x > 5 &
+                                              m.all.data$endpoint == "branch" & 
+                                              m.all.data$broken.real.y != "b" &
+                                              m.all.data$broken.real.y != "bm")], 
+           y = m.all.data$value.real.y[which(m.all.data$value.real.x > 5 &
+                                               m.all.data$endpoint == "branch" & 
+                                               m.all.data$broken.real.y != "b" &
+                                               m.all.data$broken.real.y != "bm")])) +
+  geom_point(col = "chartreuse4") +
+  geom_abline(col = "red") +
+  scale_x_continuous(name = "model length", limits = c(1, 210)) +
+  scale_y_continuous(name = "actual length", limits = c(1, 210)) +
+  geom_smooth(method = "lm", se = FALSE, col = "dark green")
+
+
 
 
 #plots
@@ -161,6 +186,8 @@ ggplot(data = subset(all.data[which(all.data$endpoint == "branch" &
   scale_x_continuous(name = "model length", limits = c(1, 210)) +
   scale_y_continuous(name = "actual length", limits = c(1, 210)) +
   geom_smooth(method = "lm", se = FALSE, col = "dark green")
+
+
 
 
 
