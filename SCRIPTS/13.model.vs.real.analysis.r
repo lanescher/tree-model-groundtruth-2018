@@ -32,14 +32,18 @@ summary(lm(all.data$value.real[which(all.data$measurement == "diameter")] ~
 
 categories = c("value.real")
 predictors = c("diameter", "length")
-dates = c("date1", "date2")
+dates = c("date1", "date2", "avg")
 endpoints = c("branch", "end")
 
 
-names.test <- c("all.date1", "all.date2", 
-                "diameter.date1", "length.date1", "diameter.date2", "length.date2", 
-                "length.branch.date1", "length.end.date1", "length.branch.date2", "length.end.date2",
-                "diameter.over5.date1", "diameter.over5.date2")
+names.test <- c("all.date1", "all.date2", "all.avg", 
+                "diameter.date1", "length.date1", 
+                "diameter.date2", "length.date2", 
+                "diameter.avg", "length.avg",
+                "length.branch.date1", "length.end.date1", 
+                "length.branch.date2", "length.end.date2",
+                "length.branch.avg", "length.end.avg",
+                "diameter.over5.date1", "diameter.over5.date2", "diameter.over5.avg")
 
 # R2 for ALL values, both dates
 i <- 1
@@ -105,16 +109,62 @@ ggplot(data = all.rsqrs,
   geom_point() +
   theme(axis.text.x = element_text(angle = 45)) +
   scale_x_discrete(name = "predictor", 
-                   limits=c("all.date1", "all.date2", 
-                            "diameter.date1", "length.date1", "diameter.date2", "length.date2", 
-                            "length.branch.date1", "length.end.date1", "length.branch.date2", "length.end.date2",
-                            "diameter.over5.date1", "diameter.over5.date2"))
+                   limits=c("all.date1", "all.date2", "all.avg", 
+                            "diameter.date1", "diameter.date2", "diameter.avg",
+                            "length.date1", "length.date2", "length.avg",
+                            "length.branch.date1", "length.branch.date2", "length.branch.avg", 
+                            "length.end.date1", "length.end.date2", "length.end.avg",
+                            "diameter.over5.date1", "diameter.over5.date2", "diameter.over5.avg"))
 
 
 
 
 
 #plots
+
+ggplot(data = subset(all.data[which(all.data$value.real > 5 & 
+                                      all.data$measurement == "diameter"),]),
+       aes(x = all.data$value.avg[which(all.data$value.real > 5 & 
+                                          all.data$measurement == "diameter")], 
+           y = all.data$value.real[which(all.data$value.real > 5 & 
+                                           all.data$measurement == "diameter")])) +
+  geom_point(col = "medium blue") +
+  geom_abline(col = "red") +
+  scale_x_continuous(name = "model diameter", limits = c(1, 45)) +
+  scale_y_continuous(name = "actual diameter", limits = c(1, 45)) +
+  geom_smooth(method = "lm", se = FALSE, col = "dark blue")
+
+ggplot(data = subset(all.data[which(all.data$measurement == "diameter"),]),
+       aes(x = all.data$value.avg[which(all.data$measurement == "diameter")], 
+           y = all.data$value.real[which(all.data$measurement == "diameter")])) +
+  geom_point(col = "medium blue") +
+  geom_abline(col = "red") +
+  scale_x_continuous(name = "model diameter", limits = c(1, 45)) +
+  scale_y_continuous(name = "actual diameter", limits = c(1, 45)) +
+  geom_smooth(method = "lm", se = FALSE, col = "dark blue")
+
+
+ggplot(data = subset(all.data[which(all.data$endpoint == "branch" & 
+                                      all.data$measurement == "length" &
+                                      all.data$broken.real != "b" &
+                                      all.data$broken.real != "bm"),]),
+       aes(x = all.data$value.avg[which(all.data$endpoint == "branch" & 
+                                          all.data$measurement == "length" &
+                                          all.data$broken.real != "b" &
+                                          all.data$broken.real != "bm")], 
+           y = all.data$value.real[which(all.data$endpoint == "branch" & 
+                                           all.data$measurement == "length" &
+                                           all.data$broken.real != "b" &
+                                           all.data$broken.real != "bm")])) +
+  geom_point(col = "chartreuse4") +
+  geom_abline(col = "red") +
+  scale_x_continuous(name = "model length", limits = c(1, 210)) +
+  scale_y_continuous(name = "actual length", limits = c(1, 210)) +
+  geom_smooth(method = "lm", se = FALSE, col = "dark green")
+
+
+
+
 plot(x = all.data$value.real[which(all.data$measurement == "diameter")],
      y = all.data$perror.date1[which(all.data$measurement == "diameter")],
      col = "blue")
@@ -165,7 +215,7 @@ points(x = all.data$value.date2[which(all.data$measurement == "length" & all.dat
 summary(lm(all.data$value.date1[which(all.data$measurement == "length" & all.data$endpoint == "branch")] ~ 
              all.data$value.real[which(all.data$measurement == "length" & all.data$endpoint == "branch")]))
 
-plot(x = all.data$hor.dist[which(all.data$measurement == "diameter")], 
+plot(x = all.data$center.dist[which(all.data$measurement == "diameter")], 
      y = all.data$perror.date1[which(all.data$measurement == "diameter")])
 
 mean(all.data$perror.date1[which(all.data$measurement == "diameter" & all.data$value.real > 25)], na.rm = TRUE)
