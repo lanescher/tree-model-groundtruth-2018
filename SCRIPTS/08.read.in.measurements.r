@@ -68,9 +68,10 @@ i <- 1
 for (i in 1:length(branches2)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
                          branches2[i], ".csv", sep = ""), skip = 3,
-                   col.names = c("node", "main.nodeto", "branch.nodeto", 
+                   col.names = c("node", "main.nodeto", 
                                  "maindiameter.real", "maindiameterbroken.real",
                                  "mainlength.real", "mainlengthbroken.real",
+                                 "branch.nodeto",
                                  "branchdiameter.real", "branchdiameterbroken.real",
                                  "branchlength.real", "branchlengthbroken.real"))
   real.measure <- rbind(real.measure, meas)
@@ -84,9 +85,10 @@ i <- 1
 for (i in 1:length(branches)) {
   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
                          branches[i], ".csv", sep = ""), skip = 3,
-                   col.names = c("node", "main.nodeto", "branch.nodeto", 
+                   col.names = c("node", "main.nodeto",
                                  "maindiameter.real", "maindiameterbroken.real",
                                  "mainlength.real", "mainlengthbroken.real",
+                                 "branch.nodeto",
                                  "branchdiameter.real", "branchdiameterbroken.real",
                                  "branchlength.real", "branchlengthbroken.real"))
   real.measure <- rbind(real.measure, meas)
