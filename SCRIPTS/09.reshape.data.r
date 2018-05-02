@@ -100,8 +100,16 @@ all.data <- merge(all.data, realbroken, by = c("node", "branch", "measurement", 
                                          "is.in.x", "vert.dist", "center.dist", "hor.dist",
                                          "theta", "main.nodeto", "branch.nodeto"))
 
-all.data$value.date1 <- as.numeric(all.data$value.x)
-all.data$value.date2 <- as.numeric(all.data$value.y)
-all.data$value.real <- as.numeric(all.data$value)
-all.data <- all.data[,-c(12:20)]
+all.data <- all.data[, -c(12, 14, 15, 17, 18, 20, 21, 23)]
+
+
+colnames(all.data) <- c("node", "branch", "measurement", "endpoint", "is.in", 
+                        "vert.dist", "hor.dist", "center.dist", "theta",
+                        "main.nodeto", "branch.nodeto",
+                        "value.date1", "value.date2", "value.real", "broken.real")
+
+
+all.data$value.date1 <- as.numeric(all.data$value.date1)
+all.data$value.date2 <- as.numeric(all.data$value.date2)
+all.data$value.real <- as.numeric(all.data$value.real)
 
