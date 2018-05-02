@@ -5,10 +5,12 @@ setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
 
 # INPUT BRANCH NUMBER AND MODEL DATES
 tree <- "memorialoak"
+branches <- c("01", "08", "09", "10", "13")
+branches2 <- c("03", "05")
 branch <- c("01", "03", "05", "08", "09", "10", "13")
 date1 <- "171221"
 date2 <- "180109"
-
+dates <- c("171221", "180109")
 
 library(ggplot2)
 

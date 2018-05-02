@@ -53,6 +53,16 @@ all.loc.data.date1 <- data.frame(Node = character(),
 
 # loop that adds all location data to df for date[1]
 i <- 1
+for (i in 1:length(branches2)) {
+  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
+                             dates[1], "_branch", branches2[i], ".txt", sep = ""),
+                       skip = 1)
+  loc.data <- loc.data[-c(1:14),-c(2:8)]
+  all.loc.data.date1 <- rbind(all.loc.data.date1, loc.data)
+  i <- i + 1
+}
+
+i <- 1
 for (i in 1:length(branches)) {
   loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
                            dates[1], "_branch", branches[i], ".txt", sep = ""),
@@ -68,6 +78,16 @@ all.loc.data.date2 <- data.frame(Node = character(),
                                  Y_est = numeric(), 
                                  Z_est = numeric())
 # loop that adds all location data to df for DATE 2
+i <- 1
+for (i in 1:length(branches2)) {
+  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
+                             dates[2], "_branch", branches2[i], ".txt", sep = ""),
+                       skip = 1)
+  loc.data <- loc.data[-c(1:14),-c(2:8)]
+  all.loc.data.date2 <- rbind(all.loc.data.date2, loc.data)
+  i <- i + 1
+}
+
 i <- 1
 for (i in 1:length(branches)) {
   loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
