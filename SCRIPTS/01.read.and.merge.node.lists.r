@@ -127,7 +127,8 @@ for (i in 1:length(branch)) {
   i <- i + 1
   
 }
-?gsub
+
+
 names(final) <- c("X.Label", "isin")
 final$X.Label <- gsub("[.]", "-", final[,1])
 final$X.Label <- gsub("[*]", ".", final[,1])
