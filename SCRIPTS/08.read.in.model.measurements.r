@@ -1,7 +1,5 @@
 # read in measurements
 
-# read in location data
-source("SCRIPTS/07.location.data.r")
 
 
 
