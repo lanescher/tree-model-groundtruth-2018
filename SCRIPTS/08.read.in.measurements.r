@@ -19,23 +19,6 @@ all.measure <- data.frame(node = factor(),
                                  branchdiameter.date2 = numeric(),
                                  branchlength.date2 = numeric())
 
-
-i <- 1
-for (i in 1:length(branches2)) {
-  meas <- read.csv(paste("DATA/INPUT/branch selection_", tree, " - primary", 
-                         branches2[i], ".csv", sep = ""),
-                   col.names = c("node", "is.in", "random", "main.nodeto", "branch.nodeto", 
-                                 "maindiameter.date1", "mainlength.date1",
-                                 "branchdiameter.date1", "branchlength.date1",
-                                 "maindiameter.date2", "mainlength.date2",
-                                 "branchdiameter.date2", "branchlength.date2"))
-  all.measure <- rbind(all.measure, meas)
-  i <- i + 1
-}
-
-all.measure$node <- gsub("[.]", "*", all.measure$node)
-all.measure$node <- gsub("[-]", ".", all.measure$node)
-
 i <- 1
 for (i in 1:length(branches)) {
   meas <- read.csv(paste("DATA/INPUT/branch selection_", tree, " - primary", 
@@ -64,40 +47,24 @@ real.measure <- data.frame(node = factor(),
                            branchlength.real = numeric(),
                            branchlengthbroken.real = factor())
 
-i <- 1
-for (i in 1:length(branches2)) {
-  meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
-                         branches2[i], ".csv", sep = ""), skip = 3,
-                   col.names = c("node", "main.nodeto", 
-                                 "maindiameter.real", "maindiameterbroken.real",
-                                 "mainlength.real", "mainlengthbroken.real",
-                                 "branch.nodeto",
-                                 "branchdiameter.real", "branchdiameterbroken.real",
-                                 "branchlength.real", "branchlengthbroken.real"))
-  real.measure <- rbind(real.measure, meas)
-  i <- i + 1
-}
 
-real.measure$node <- gsub("[.]", "*", real.measure$node)
-real.measure$node <- gsub("[-]", ".", real.measure$node)
-
-i <- 1
-for (i in 1:length(branches)) {
-  meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
-                         branches[i], ".csv", sep = ""), skip = 3,
-                   col.names = c("node", "main.nodeto",
-                                 "maindiameter.real", "maindiameterbroken.real",
-                                 "mainlength.real", "mainlengthbroken.real",
-                                 "branch.nodeto",
-                                 "branchdiameter.real", "branchdiameterbroken.real",
-                                 "branchlength.real", "branchlengthbroken.real"))
-  real.measure <- rbind(real.measure, meas)
-  i <- i + 1
-}
+# i <- 1
+# for (i in 1:length(branches)) {
+#   meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch", 
+#                          branches[i], ".csv", sep = ""), skip = 3,
+#                    col.names = c("node", "main.nodeto",
+#                                  "maindiameter.real", "maindiameterbroken.real",
+#                                  "mainlength.real", "mainlengthbroken.real",
+#                                  "branch.nodeto",
+#                                  "branchdiameter.real", "branchdiameterbroken.real",
+#                                  "branchlength.real", "branchlengthbroken.real"))
+#   real.measure <- rbind(real.measure, meas)
+#   i <- i + 1
+# }
 
 
-# merge real with model measurements
-all.measure <- merge(all.measure, real.measure, all = TRUE)
+# # merge real with model measurements
+# all.measure <- merge(all.measure, real.measure, all = TRUE)
 
 # merge with location data
 loc.data$node <- gsub("[.]", "*", loc.data$node)
