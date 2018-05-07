@@ -1,41 +1,60 @@
 # start testing how consistent measurements are from one model to another
-getwd()
+
+setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
+
+
+tree <- "memorialoak"
+branches <- c("01", "03", "05", "08", "09", "10", "13")
+branch <- c("01", "03", "05", "08", "09", "10", "13")
+date1 <- "171221"
+date2 <- "180109"
+dates <- c("171221", "180109")
+
+tree <- "walnut2"
+branches <- c("01", "06", "07", "11", "12", "13", "14")
+branch <- c("01", "06", "07", "11", "12", "13", "14")
+date1 <- "180228"
+date2 <- "180328"
+dates <- c("180228", "180328")
+
+
 library(ggplot2)
+source("SCRIPTS/09a.reshape.data.without.real.r")
 source("SCRIPTS/10.define.error.functions.r")
+
+
 
 # calculate percent error between models
 all.data$error <- all.data$value.date1 - all.data$value.date2
-all.data$perror <- all.data$error / all.data$value.date2
+all.data$perror <- (all.data$error / all.data$value.date2) * 100
 
-rmse(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA")])
+walnut2.all.data <- all.data
+walnut2.all.data$tree <- "walnut2"
+memorialoak.all.data <- all.data
+memorialoak.all.data$tree <- "memorialoak"
 
-rmse(all.data$error[which(all.data$measurement == "length"
-                          & all.data$error != "NA")])
+comb.all.data <- rbind(walnut2.all.data, memorialoak.all.data)
 
-rmse(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA" 
-                          & all.data$endpoint != "end")])
 
-mean(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA")])
+ggplot(data = comb.all.data, 
+       aes(x = comb.all.data$value.date1, y = comb.all.data$value.date2)) +
+  geom_point(aes(color = factor(comb.all.data$tree), 
+                 shape = factor(comb.all.data$measurement)))
+  
+ggplot(data = subset(comb.all.data, comb.all.data$measurement == "diameter"), 
+       aes(x = comb.all.data$value.date1[which(comb.all.data$measurement == "diameter")], 
+           y = comb.all.data$value.date2[which(comb.all.data$measurement == "diameter")])) +
+  geom_point(aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "diameter")]))) +
+  geom_smooth(method = "lm", 
+              aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "diameter")])))
 
-mean(all.data$error[which(all.data$measurement == "length"
-                          & all.data$error != "NA")])
-
-mean(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA" 
-                          & all.data$endpoint != "end")])
-
-mae(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA")])
-
-mae(all.data$error[which(all.data$measurement == "length"
-                          & all.data$error != "NA")])
-
-mae(all.data$error[which(all.data$measurement == "diameter"
-                          & all.data$error != "NA" 
-                          & all.data$endpoint != "end")])
+ggplot(data = subset(comb.all.data, comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch"), 
+       aes(x = comb.all.data$value.date1[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")], 
+           y = comb.all.data$value.date2[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")])) +
+  geom_point(aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))) +
+  geom_smooth(method = "lm", 
+              aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))) +
+  geom_text(aes(label = comb.all.data$node[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))
 
 summary(aov(all.data$perror[which(all.data$perror != "NA" & 
                                     all.data$perror != Inf & 
