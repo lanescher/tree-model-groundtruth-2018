@@ -28,6 +28,8 @@ source("SCRIPTS/10.define.error.functions.r")
 all.data$error <- all.data$value.date1 - all.data$value.date2
 all.data$perror <- (all.data$error / all.data$value.date2) * 100
 
+
+# combine data
 walnut2.all.data <- all.data
 walnut2.all.data$tree <- "walnut2"
 memorialoak.all.data <- all.data
@@ -35,6 +37,11 @@ memorialoak.all.data$tree <- "memorialoak"
 
 comb.all.data <- rbind(walnut2.all.data, memorialoak.all.data)
 
+
+
+# analysis
+rmse(comb.all.data$error[which(comb.all.data$measurement == "diameter")])
+rmse(comb.all.data$error[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")])
 
 ggplot(data = comb.all.data, 
        aes(x = comb.all.data$value.date1, y = comb.all.data$value.date2)) +

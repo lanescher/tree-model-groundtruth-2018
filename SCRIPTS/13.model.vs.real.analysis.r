@@ -21,12 +21,17 @@ source("SCRIPTS/10.define.error.functions.r")
 
 
 # correlations between model and real
-summary(lm(all.data$value.real[which(all.data$measurement == "diameter")] ~ 
-             all.data$value.date2[which(all.data$measurement == "diameter")]))
+summary(lm(all.data$vert.dist[which(all.data$measurement == "length" & all.data$endpoint == "branch")] ~ 
+             all.data$perror.avg[which(all.data$measurement == "length" & all.data$endpoint == "branch")]))
+?subset
 
+summary(lm(all.data$perror.avg[which(all.data$measurement == "diameter")] ~ 
+             all.data$value.real[which(all.data$measurement == "diameter")]))
 
-
-
+ggplot(data = subset(all.data, all.data$measurement == "length" & all.data$endpoint == "branch"),
+       aes(x = all.data$value.real[which(all.data$measurement == "length" & all.data$endpoint == "branch")], 
+           y = all.data$perror.avg[which(all.data$measurement == "length" & all.data$endpoint == "branch")])) +
+  geom_point()
 
 
 categories = c("value.real")
@@ -115,6 +120,8 @@ ggplot(data = all.rsqrs,
                             "length.end.date1", "length.end.date2", "length.end.avg",
                             "diameter.over5.date1", "diameter.over5.date2", "diameter.over5.avg"))
 
+rmse(all.data$error.date1[which(all.data$measurement == "length" & 
+                                  all.data$endpoint == "branch")])
 
 
 all.data.diameter <- all.data[which(all.data$measurement == "diameter"),]
