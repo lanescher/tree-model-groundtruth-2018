@@ -1,7 +1,6 @@
 # reshape measurement data
 
 library(reshape2)
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
 
 # read in all data
 source("SCRIPTS/08.read.in.model.measurements.r")
