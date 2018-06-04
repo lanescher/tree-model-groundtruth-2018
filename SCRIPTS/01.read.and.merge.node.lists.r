@@ -3,10 +3,10 @@
 setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
 
 # INPUT BRANCH NUMBER AND MODEL DATES
-tree <- "memorialoak"
-branch <- c("01", "03", "05", "08", "09", "10", "13")
-date1 <- "171221"
-date2 <- "180109"
+tree <- "elm"
+branch <- c("01", "02", "03", "04", "10", "14", "15")
+date1 <- "180222"
+date2 <- "180323"
 
 i <- 1
 for (i in 1:length(branch)) {
