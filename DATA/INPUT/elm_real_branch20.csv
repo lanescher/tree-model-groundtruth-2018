@@ -1,0 +1,10 @@
+ELM BRANCH 20,,,,,,,,,,
+,,,,,,,,,,
+,main,,,,,branch,,,,
+node,to node,diameter,,length,,to node,diameter,,length,
+20-1-4,20-1-5,NA,,NA,,end,NA,,NA,
+20-1-5,20-1-6,NA,,NA,,end,NA,,NA,
+20-1-8,end,NA,,NA,,end,NA,,NA,
+20-2,20-3,5.5,,NA,,end,3.5,,217.4,
+20-3,20-4,NA,,NA,,end,NA,,NA,
+20-1-1-1,20-1-1-3,3.44,,24.2,,end,1.4,,33.2,b
