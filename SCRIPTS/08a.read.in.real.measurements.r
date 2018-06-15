@@ -24,7 +24,10 @@ for (i in 1:length(branches)) {
                                  "mainlength.real", "mainlengthbroken.real",
                                  "branch.nodeto",
                                  "branchdiameter.real", "branchdiameterbroken.real",
-                                 "branchlength.real", "branchlengthbroken.real"))
+                                 "branchlength.real", "branchlengthbroken.real"),
+                   colClasses = c("character", "character", "numeric", "factor", 
+                                  "numeric", "factor", "character", "numeric", "factor",
+                                  "numeric", "factor"))
   real.measure <- rbind(real.measure, meas)
   i <- i + 1
 }
