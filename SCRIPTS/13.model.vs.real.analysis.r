@@ -1,15 +1,15 @@
 # model vs real analysis
 
 # set wd
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
+setwd("C:/Users/clane_897q3pb/Documents/Github/tree-model-groundtruth-2018")
 
 # INPUT BRANCH NUMBER AND MODEL DATES
-tree <- "memorialoak"
-branches <- c("01", "03", "05", "08", "09", "10", "13")
-branch <- c("01", "03", "05", "08", "09", "10", "13")
-date1 <- "171221"
-date2 <- "180109"
-dates <- c("171221", "180109")
+tree <- "walnut2"
+branches <- c("01", "06", "07", "11", "12", "13")
+branch <- c("01", "06", "07", "11", "12", "13")
+date1 <- "180228"
+date2 <- "180328"
+dates <- c("180228", "180328")
 
 library(ggplot2)
 
@@ -30,7 +30,7 @@ summary(lm(all.data$perror.avg[which(all.data$measurement == "diameter")] ~
 
 ggplot(data = subset(all.data, all.data$measurement == "length" & all.data$endpoint == "branch"),
        aes(x = all.data$value.real[which(all.data$measurement == "length" & all.data$endpoint == "branch")], 
-           y = all.data$perror.avg[which(all.data$measurement == "length" & all.data$endpoint == "branch")])) +
+           y = all.data$value.avg[which(all.data$measurement == "length" & all.data$endpoint == "branch")])) +
   geom_point()
 
 
@@ -191,7 +191,11 @@ ggplot(data = subset(all.data[which(all.data$endpoint == "branch" &
   geom_abline(col = "red") +
   scale_x_continuous(name = "model length", limits = c(1, 210)) +
   scale_y_continuous(name = "actual length", limits = c(1, 210)) +
-  geom_smooth(method = "lm", se = FALSE, col = "dark green")
+  geom_smooth(method = "lm", se = FALSE, col = "dark green") +
+  geom_text(aes(label=all.data$node[which(all.data$endpoint == "branch" & 
+                                            all.data$measurement == "length" &
+                                            all.data$broken.real != "b" &
+                                            all.data$broken.real != "bm")]),hjust=0, vjust=0)
 
 
 
@@ -245,11 +249,11 @@ points(x = all.data$value.date2[which(all.data$measurement == "length" & all.dat
        y = all.data$value.real[which(all.data$measurement == "length" & all.data$endpoint == "branch")],
        col = "blue")
 
-summary(lm(all.data$value.date1[which(all.data$measurement == "length" & all.data$endpoint == "branch")] ~ 
+summary(lm(all.data$value.date2[which(all.data$measurement == "length" & all.data$endpoint == "branch")] ~ 
              all.data$value.real[which(all.data$measurement == "length" & all.data$endpoint == "branch")]))
 
 plot(x = all.data$center.dist[which(all.data$measurement == "diameter")], 
      y = all.data$perror.date1[which(all.data$measurement == "diameter")])
 
 mean(all.data$perror.date1[which(all.data$measurement == "diameter" & all.data$value.real > 25)], na.rm = TRUE)
-rmse(all.data$perror.date1[which(all.data$measurement == "length" & all.data$value.real > 175 & all.data$endpoint == "branch")])
+rmse(all.data$perror.date2[which(all.data$measurement == "length" & all.data$value.real > 5 & all.data$endpoint == "branch")])
