@@ -1,29 +1,5 @@
 # start testing how consistent measurements are from one model to another
 
-setwd("C:/Users/lscher/Documents/Github/tree-model-groundtruth-2018")
-
-
-tree <- "memorialoak"
-branches <- c("01", "03", "05", "08", "09", "10", "13")
-branch <- c("01", "03", "05", "08", "09", "10", "13")
-date1 <- "171221"
-date2 <- "180109"
-dates <- c("171221", "180109")
-
-tree <- "walnut2"
-branches <- c("01", "06", "07", "11", "12", "13", "14")
-branch <- c("01", "06", "07", "11", "12", "13", "14")
-date1 <- "180228"
-date2 <- "180328"
-dates <- c("180228", "180328")
-
-
-library(ggplot2)
-source("SCRIPTS/09a.reshape.data.without.real.r")
-source("SCRIPTS/10.define.error.functions.r")
-
-
-
 # calculate percent error between models
 all.data$error <- all.data$value.date1 - all.data$value.date2
 all.data$perror <- (all.data$error / all.data$value.date2) * 100
