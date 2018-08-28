@@ -2,11 +2,6 @@
 
 library(reshape2)
 
-# read in all data
-source("SCRIPTS/08.read.in.model.measurements.r")
-source("SCRIPTS/08a.read.in.real.measurements.r")
-source("SCRIPTS/08b.add.locations.r")
-
 all.data <- melt(all.data, id.vars = c("node", "is.in.x", 
                                    "vert.dist", "center.dist", "hor.dist", "theta", 
                                    "main.nodeto", "branch.nodeto"))

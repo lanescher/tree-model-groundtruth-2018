@@ -1,7 +1,7 @@
 #08b. add location
 
 # read in location data
-source("SCRIPTS/07.location.data.r")
+source("../SCRIPTS/07.location.data.r")
 
 # merge with location data
 loc.data$node <- gsub("[.]", "*", loc.data$node)

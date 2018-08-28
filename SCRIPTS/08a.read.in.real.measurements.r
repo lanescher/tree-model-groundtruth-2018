@@ -16,9 +16,9 @@ real.measure <- data.frame(node = factor(),
                            branchlengthbroken.real = factor())
 
 i <- 1
-for (i in 1:length(branches)) {
-  meas <- read.csv(paste("DATA/INPUT/", tree, "_real_branch",
-                        branches[i], ".csv", sep = ""), skip = 3,
+for (i in 1:length(branch)) {
+  meas <- read.csv(paste("../DATA/INPUT/", tree, "_measurements_real_branch",
+                        branch[i], ".csv", sep = ""), skip = 3,
                    col.names = c("node", "main.nodeto",
                                  "maindiameter.real", "maindiameterbroken.real",
                                  "mainlength.real", "mainlengthbroken.real",
