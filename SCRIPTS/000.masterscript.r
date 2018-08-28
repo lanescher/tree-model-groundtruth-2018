@@ -25,3 +25,16 @@ source("../SCRIPTS/07.location.data.r")
 
 # read in measurements from models
 source("../SCRIPTS/08.read.in.model.measurements.r")
+
+# read in measurements from real
+source("../SCRIPTS/08a.read.in.real.measurements.r")
+
+# add locations to measurements
+source("../SCRIPTS/08b.add.locations.r")
+
+# combine data and reshape
+source("../SCRIPTS/09.reshape.data.with.real.r")
+
+# define error functions
+source("../SCRIPTS/10.define.error.functions.r")
+
