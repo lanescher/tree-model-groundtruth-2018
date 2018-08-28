@@ -1,7 +1,7 @@
 # read in centerpointdata and find center point
 
 # find centerpoint for date 1
-date1_center <- read.csv(paste("DATA/INPUT/", tree,"_", dates[1], "_center.txt",
+date1_center <- read.csv(paste("../DATA/INPUT/", tree,"_locations_", dates[1], "_center.txt",
                                sep = ""),
                               skip = 1)
 
@@ -42,7 +42,7 @@ date1_centerpointdf <- as.data.frame(date1_center.new[5,])
 
 
 # find centerpoint for date 2
-date2_center <- read.csv(paste("DATA/INPUT/", tree, "_", dates[2], "_center.txt",
+date2_center <- read.csv(paste("../DATA/INPUT/", tree, "_locations_", dates[2], "_center.txt",
                                sep = ""),
                          skip = 1)
 

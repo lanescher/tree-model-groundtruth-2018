@@ -1,4 +1,3 @@
-# requires all.loc.data.date1, all.loc.data.date2, date1_centerpointdf, date2_centerpointdf
 
 # calculate distance to centerpoint
 center.dist <- function(centerpoint, nodes) {

@@ -1,19 +1,3 @@
-# run all scripts to produce node location data and photo location data.
-# write one file with node location data and one file with photo location data.
-
-
-# source file to find centerpoint in both dates
-source("SCRIPTS/02.find.centerpoint.r")
-
-# source file to convert centerpoint and nodes to lat/long
-source("SCRIPTS/03.convert.lat.long.to.meters.r")
-
-# source file to find distances from nodes to centerpoint
-source("SCRIPTS/04.find.node.distances.r")
-
-# source file to find theta between centerpoint and nodes
-source("SCRIPTS/05.find.node.theta.r")
-
 
 
 # merge data, make new columns with differences
@@ -75,7 +59,7 @@ all.loc.data$diff.theta[which(all.loc.data$is.in == "both")] <-
 
 
 # write file with raw merged data
-write.csv(all.loc.data, paste("DATA/OUTPUT/", tree, "_node_locations_RAW.csv", sep = ""))
+write.csv(all.loc.data, paste("../DATA/OUTPUT/", tree, "_node_locations_RAW.csv", sep = ""))
 
 
 # create new df with location avgs - this will only put values for nodes in both models
@@ -99,4 +83,4 @@ loc.data$hor.dist[which(loc.data$is.in == "180109")] <- all.loc.data$hor.dist.y[
 loc.data$theta[which(loc.data$is.in == "180109")] <- all.loc.data$thetadeg.y[which(loc.data$is.in == "180109")]
 
 # write file with averaged loc data
-write.csv(loc.data, paste("DATA/OUTPUT/", tree, "_node_locations.csv", sep = ""))
+write.csv(loc.data, paste("../DATA/OUTPUT/", tree, "_node_locations.csv", sep = ""))

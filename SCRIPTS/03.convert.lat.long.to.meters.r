@@ -1,4 +1,3 @@
-# requires date1_centerpoint and date2_centerpoint from script 02.
 
 
 # this script:
@@ -52,9 +51,9 @@ all.loc.data.date1 <- data.frame(Node = character(),
                            Z_est = numeric())
 
 i <- 1
-for (i in 1:length(branches)) {
-  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
-                           dates[1], "_branch", branches[i], ".txt", sep = ""),
+for (i in 1:length(branch)) {
+  loc.data <- read.csv(paste("../DATA/INPUT/", tree, "_locations_", 
+                           dates[1], "_branch", branch[i], ".txt", sep = ""),
                      skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
   all.loc.data.date1 <- rbind(all.loc.data.date1, loc.data)
@@ -69,9 +68,9 @@ all.loc.data.date2 <- data.frame(Node = character(),
 # loop that adds all location data to df for DATE 2
 
 i <- 1
-for (i in 1:length(branches)) {
-  loc.data <- read.csv(paste("DATA/INPUT/", tree, "_", 
-                             dates[2], "_branch", branches[i], ".txt", sep = ""),
+for (i in 1:length(branch)) {
+  loc.data <- read.csv(paste("../DATA/INPUT/", tree, "_locations_", 
+                             dates[2], "_branch", branch[i], ".txt", sep = ""),
                        skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
   all.loc.data.date2 <- rbind(all.loc.data.date2, loc.data)
@@ -121,36 +120,4 @@ all.loc.data.date2$meterslat <- all.loc.data.date2$Y_est * all.loc.data.date2$m.
 all.loc.data.date2$meterslong <- all.loc.data.date2$X_est * all.loc.data.date2$m.long
 all.loc.data.date2$metersalt <- all.loc.data.date2$Z_est
 
-
-
-### Repeat for targets #### Actually we don't really need this
-
-# nodes.m.17 <- read.csv("C:/Users/lscher/Documents/Tree Observatory/3D model analysis/data/branchdata/171221_branch01_GPS.txt",
-#                        skip = 1)
-# targets <- nodes.m.17[-c(15:54),9:11]
-# targets$reflat <- date1_centerpoint[2]
-# targets$reflong <- date1_centerpoint[1]
-# targets$rlat <- targets$reflat * pi / 180
-# 
-# targets$m.lat <- 111132.92 - 559.82 * 
-#   cos(2 * targets$rlat) + 1.175 * 
-#   cos(4 * targets$rlat)
-# 
-# targets$m.long <- 111412.84 * 
-#   cos(targets$rlat) - 93.5 * 
-#   cos(3 * targets$rlat)
-# 
-# targets$meterslat <- targets$Y_est * targets$m.lat
-# targets$meterslong <- targets$X_est * targets$m.long
-# targets$metersalt <- targets$Z_est
-# 
-
-
-# plot all points date 1
-plot3d(x = all.loc.data.date1$meterslong, 
-       y = all.loc.data.date1$meterslat, 
-       z = all.loc.data.date1$metersalt)
-aspect3d(x = "iso")
-
-# plot all points date 2
 

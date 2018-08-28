@@ -18,9 +18,9 @@ all.measure <- data.frame(node = factor(),
                                  branchlength.date2 = numeric())
 
 i <- 1
-for (i in 1:length(branches)) {
-  meas <- read.csv(paste("DATA/INPUT/branch selection_", tree, " - primary", 
-                             branches[i], ".csv", sep = ""),
+for (i in 1:length(branch)) {
+  meas <- read.csv(paste("../DATA/INPUT/", tree, "_measurements_models_branch", 
+                             branch[i], ".csv", sep = ""),
                    col.names = c("node", "is.in", "random", "main.nodeto", "branch.nodeto", 
                                  "maindiameter.date1", "mainlength.date1",
                                  "branchdiameter.date1", "branchlength.date1",
