@@ -1,61 +1,97 @@
 # measurement count
 
-date <- date2
+names <- "start"
 
-length(all.measure$node[which(all.measure$is.in == "B" |
-                                all.measure$is.in == "180109")])
+count <- as.data.frame(names)
+count$V2 <- NA
+count$V3 <- NA
+count$V4 <- NA
+count$V5 <- NA
 
-#main diameter
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                all.measure$is.in == date) & (
-                                  is.na(all.measure$maindiameter.real) == FALSE & 
-                                    all.measure$maindiameterbroken.real != "b" & 
-                                    all.measure$maindiameterbroken.real != "bm") 
-                                )])
+tree <- c("memorialoak", "elm", "walnut2")
+i <- 1
 
-#branch diameter
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                 all.measure$is.in == date) & (
-                                   is.na(all.measure$branchdiameter.real) == FALSE & 
-                                     all.measure$branchdiameterbroken.real != "b" & 
-                                     all.measure$branchdiameterbroken.real != "bm") 
-                                )])
+for (i in 1:length(tree)) {
+names <- c("1", "2", "3")
+t <- as.data.frame(names)
+d1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "diameter" &
+                                         is.na(comb.all.data$value.date1) == FALSE &
+                                           comb.all.data$tree == tree[i])])
+d2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "diameter" &
+                                         is.na(comb.all.data$value.date2) == FALSE &
+                                           comb.all.data$tree == tree[i])])
+dr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "diameter" &
+                                               is.na(comb.all.data$value.real) == FALSE &
+                                               comb.all.data$broken.real != "b" &
+                                               comb.all.data$broken.real != "bm" &
+                                               comb.all.data$tree == tree[i])])
 
-#main length to node
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                 all.measure$is.in == date) & (
-                                   is.na(all.measure$mainlength.real) == FALSE & 
-                                     all.measure$main.nodeto != "end" &
-                                     is.na(all.measure$main.nodeto) == FALSE &
-                                     all.measure$mainlengthbroken.real != "b" & 
-                                     all.measure$mainlengthbroken.real != "bm") 
-)])
+l1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.date1) == FALSE &
+                                               comb.all.data$tree == tree[i])])
+l2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.date2) == FALSE &
+                                               comb.all.data$tree == tree[i])])
+lr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.real) == FALSE &
+                                               comb.all.data$broken.real != "b" &
+                                               comb.all.data$broken.real != "bm" &
+                                               comb.all.data$tree == tree[i])])
 
-#branch length to node
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                 all.measure$is.in == date) & (
-                                   is.na(all.measure$branchlength.real) == FALSE & 
-                                     all.measure$branch.nodeto != "end" &
-                                     is.na(all.measure$branch.nodeto) == FALSE &
-                                     all.measure$branchlengthbroken.real != "b" & 
-                                     all.measure$branchlengthbroken.real != "bm") 
-)])
+lb1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.date1) == FALSE &
+                                               comb.all.data$tree == tree[i] &
+                                               comb.all.data$endpoint == "branch")])
+lb2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.date2) == FALSE &
+                                               comb.all.data$tree == tree[i] &
+                                               comb.all.data$endpoint == "branch")])
+lbr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                               is.na(comb.all.data$value.real) == FALSE &
+                                               comb.all.data$broken.real != "b" &
+                                               comb.all.data$broken.real != "bm" &
+                                               comb.all.data$tree == tree[i] &
+                                               comb.all.data$endpoint == "branch")])
 
+le1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                                is.na(comb.all.data$value.date1) == FALSE &
+                                                comb.all.data$tree == tree[i] &
+                                                comb.all.data$endpoint == "end")])
+le2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                                is.na(comb.all.data$value.date2) == FALSE &
+                                                comb.all.data$tree == tree[i] &
+                                                comb.all.data$endpoint == "end")])
+ler <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
+                                                is.na(comb.all.data$value.real) == FALSE &
+                                                comb.all.data$broken.real != "b" &
+                                                comb.all.data$broken.real != "bm" &
+                                                comb.all.data$tree == tree[i] &
+                                                comb.all.data$endpoint == "end")])
 
-#main length to end
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                 all.measure$is.in == date) & (
-                                   is.na(all.measure$mainlength.real) == FALSE & 
-                                     all.measure$main.nodeto == "end" &
-                                     all.measure$mainlengthbroken.real != "b" & 
-                                     all.measure$mainlengthbroken.real != "bm") 
-)])
+t[1, 2] <- dr
+t[2, 2] <- d1
+t[3, 2] <- d2
 
-#branch length to end
-length(all.measure$node[which((all.measure$is.in == "B" |
-                                 all.measure$is.in == date) & (
-                                   is.na(all.measure$branchlength.real) == FALSE & 
-                                     all.measure$branch.nodeto == "end" &
-                                     all.measure$branchlengthbroken.real != "b" & 
-                                     all.measure$branchlengthbroken.real != "bm") 
-)])
+t[1, 3] <- lr
+t[2, 3] <- l1
+t[3, 3] <- l2
+
+t[1, 4] <- lbr
+t[2, 4] <- lb1
+t[3, 4] <- lb2
+
+t[1, 5] <- ler
+t[2, 5] <- le1
+t[3, 5] <- le2
+
+count <- rbind(count, t)
+
+i <- i + 1
+}
+
+count <- count[-1,]
+
+count$names <- c("Memorial Oak, real", "Memorial Oak, date 1", "Memorial Oak, date 2",
+           "Elm, real",  "Elm, date 1", "Elm, date 2",
+           "Walnut, real", "Walnut, date 1", "Walnut, date 1")
+
