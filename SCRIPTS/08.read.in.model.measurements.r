@@ -3,11 +3,11 @@
 
 
 
-all.measure <- data.frame(node = factor(),
+all.measure <- data.frame(node = character(),
                                  is.in = character(),
                                  random = numeric(),
-                                 main.nodeto = factor(),
-                                 branch.nodeto = factor(),
+                                 main.nodeto = character(),
+                                 branch.nodeto = character(),
                                  maindiameter.date1 = numeric(),
                                  mainlength.date1 = numeric(),
                                  branchdiameter.date1 = numeric(),
