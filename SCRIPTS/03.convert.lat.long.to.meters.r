@@ -57,8 +57,13 @@ for (i in 1:length(branch)) {
                      skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
   all.loc.data.date1 <- rbind(all.loc.data.date1, loc.data)
+  all.loc.data.date1$X.Label <- as.character(all.loc.data.date1$X.Label)
   i <- i + 1
 }
+
+
+all.loc.data.date1 <- all.loc.data.date1[rev(rownames(all.loc.data.date1)),]
+all.loc.data.date1 <- all.loc.data.date1[!duplicated(all.loc.data.date1$X.Label),]
 
 # make empty df for ALL BRANCHES in date[2]
 all.loc.data.date2 <- data.frame(Node = character(), 
@@ -74,8 +79,13 @@ for (i in 1:length(branch)) {
                        skip = 1)
   loc.data <- loc.data[-c(1:14),-c(2:8)]
   all.loc.data.date2 <- rbind(all.loc.data.date2, loc.data)
+  all.loc.data.date2$X.Label <- as.character(all.loc.data.date2$X.Label)
   i <- i + 1
 }
+
+all.loc.data.date2 <- all.loc.data.date2[rev(rownames(all.loc.data.date2)),]
+all.loc.data.date2 <- all.loc.data.date2[!duplicated(all.loc.data.date2$X.Label),]
+
 
 #### Only Date 1 right now
 
