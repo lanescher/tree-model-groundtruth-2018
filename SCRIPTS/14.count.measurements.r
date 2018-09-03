@@ -22,8 +22,7 @@ d2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "diame
                                            comb.all.data$tree == tree[i])])
 dr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "diameter" &
                                                is.na(comb.all.data$value.real) == FALSE &
-                                               comb.all.data$broken.real != "b" &
-                                               comb.all.data$broken.real != "bm" &
+                                               is.na(comb.all.data$broken.real) == TRUE &
                                                comb.all.data$tree == tree[i])])
 
 l1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
@@ -34,8 +33,7 @@ l2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "lengt
                                                comb.all.data$tree == tree[i])])
 lr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
                                                is.na(comb.all.data$value.real) == FALSE &
-                                               comb.all.data$broken.real != "b" &
-                                               comb.all.data$broken.real != "bm" &
+                                               is.na(comb.all.data$broken.real) == TRUE &
                                                comb.all.data$tree == tree[i])])
 
 lb1 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
@@ -48,8 +46,7 @@ lb2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "leng
                                                comb.all.data$endpoint == "branch")])
 lbr <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
                                                is.na(comb.all.data$value.real) == FALSE &
-                                               comb.all.data$broken.real != "b" &
-                                               comb.all.data$broken.real != "bm" &
+                                               is.na(comb.all.data$broken.real) == TRUE &
                                                comb.all.data$tree == tree[i] &
                                                comb.all.data$endpoint == "branch")])
 
@@ -63,8 +60,7 @@ le2 <- length(comb.all.data$measurement[which(comb.all.data$measurement == "leng
                                                 comb.all.data$endpoint == "end")])
 ler <- length(comb.all.data$measurement[which(comb.all.data$measurement == "length" &
                                                 is.na(comb.all.data$value.real) == FALSE &
-                                                comb.all.data$broken.real != "b" &
-                                                comb.all.data$broken.real != "bm" &
+                                                is.na(comb.all.data$broken.real) == TRUE &
                                                 comb.all.data$tree == tree[i] &
                                                 comb.all.data$endpoint == "end")])
 
@@ -93,7 +89,7 @@ count <- count[-1,]
 
 count$names <- c("Memorial Oak, real", "Memorial Oak, date 1", "Memorial Oak, date 2",
            "Elm, real",  "Elm, date 1", "Elm, date 2",
-           "Walnut, real", "Walnut, date 1", "Walnut, date 1")
+           "Walnut, real", "Walnut, date 1", "Walnut, date 2")
 
 colnames(count) <- c("", "Diameter", "Length", "Length, branch", "Length, end")
 
