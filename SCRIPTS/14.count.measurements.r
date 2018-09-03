@@ -95,3 +95,6 @@ count$names <- c("Memorial Oak, real", "Memorial Oak, date 1", "Memorial Oak, da
            "Elm, real",  "Elm, date 1", "Elm, date 2",
            "Walnut, real", "Walnut, date 1", "Walnut, date 1")
 
+colnames(count) <- c("", "Diameter", "Length", "Length, branch", "Length, end")
+
+write.csv(count, "../OUT/TABLE.measurementcount.csv")
