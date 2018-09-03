@@ -1,18 +1,8 @@
 # start testing how consistent measurements are from one model to another
 
 # calculate percent error between models
-all.data$error <- all.data$value.date1 - all.data$value.date2
-all.data$perror <- (all.data$error / all.data$value.date2) * 100
-
-
-# combine data
-walnut2.all.data <- all.data
-walnut2.all.data$tree <- "walnut2"
-memorialoak.all.data <- all.data
-memorialoak.all.data$tree <- "memorialoak"
-
-comb.all.data <- rbind(walnut2.all.data, memorialoak.all.data)
-
+comb.all.data$error <- comb.all.data$value.date1 - comb.all.data$value.date2
+comb.all.data$perror <- (comb.all.data$error / comb.all.data$value.date2) * 100
 
 
 # analysis
@@ -36,8 +26,9 @@ ggplot(data = subset(comb.all.data, comb.all.data$measurement == "length" & comb
            y = comb.all.data$value.date2[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")])) +
   geom_point(aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))) +
   geom_smooth(method = "lm", 
-              aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))) +
-  geom_text(aes(label = comb.all.data$node[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))
+              aes(color = factor(comb.all.data$tree[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))) 
+
+#+geom_text(aes(label = comb.all.data$node[which(comb.all.data$measurement == "length" & comb.all.data$endpoint == "branch")]))
 
 summary(aov(all.data$perror[which(all.data$perror != "NA" & 
                                     all.data$perror != Inf & 
