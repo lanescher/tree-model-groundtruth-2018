@@ -13,7 +13,8 @@ elm.all.data$tree <- "elm"
 #######
 
 tree <- "walnut2"
-branch <- c("01", "06", "07", "11", "12", "13", "14")
+branch <- c("01", "03", "04", "06", "07", "11", "12", "13", "14")
+branch <- c("03", "04")
 dates <- c("180228", "180328")
 
 source("../SCRIPTS/000.read.in.data.r")
@@ -33,3 +34,11 @@ memorialoak.all.data <- all.data
 memorialoak.all.data$tree <- "memorialoak"
 
 comb.all.data <- rbind(walnut2.all.data, memorialoak.all.data, elm.all.data)
+
+comb.all.data$main.nodeto[which(comb.all.data$main.nodeto == "")] <- NA
+comb.all.data$branch.nodeto[which(comb.all.data$branch.nodeto == "")] <- NA
+comb.all.data$value.date1[which(comb.all.data$value.date1 == "")] <- NA
+comb.all.data$value.date2[which(comb.all.data$value.date2 == "")] <- NA
+comb.all.data$value.real[which(comb.all.data$value.real == "")] <- NA
+comb.all.data$broken.real[which(comb.all.data$broken.real == "")] <- NA
+
