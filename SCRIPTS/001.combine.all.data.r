@@ -14,7 +14,6 @@ elm.all.data$tree <- "elm"
 
 tree <- "walnut2"
 branch <- c("01", "03", "04", "06", "07", "11", "12", "13", "14")
-branch <- c("03", "04")
 dates <- c("180228", "180328")
 
 source("../SCRIPTS/000.read.in.data.r")
