@@ -1,4 +1,4 @@
-WALNUT2 BRANCH 1,,,,,,,,,
-,,,,,,,,,
-,main,,,,,branch,,,
-node,to node,diameter,,length,,to node,diameter,,length
+WALNUT2 BRANCH 1,,,,,,,,,,
+,,,,,,,,,,
+,main,,,,,branch,,,,
+node,to node,diameter,,length,,to node,diameter,,length,b
