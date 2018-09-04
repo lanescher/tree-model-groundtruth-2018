@@ -146,3 +146,88 @@ ggarrange(le1, le2, leavg,
           align = "hv")
 dev.off()
 
+
+
+## diameter accuracy by size
+
+ds1 <- ggplot(data = d.all.data,
+             aes(x = d.all.data$value.date1, y = d.all.data$perror,
+                 color = factor(d.all.data$tree))) +
+  geom_point()
+
+
+ds2 <- ggplot(data = d.all.data,
+             aes(x = d.all.data$value.date2, y = d.all.data$perror,
+                 color = factor(d.all.data$tree))) +
+  geom_point()
+
+dsavg <- ggplot(data = d.all.data,
+               aes(x = d.all.data$value.avg, y = d.all.data$perror,
+                   color = factor(d.all.data$tree))) +
+  geom_point()
+
+jpeg("../OUT/FIGURE.DiameterAccuracySize.jpg", width = 1800, height = 600)
+ggarrange(ds1, ds2, dsavg, 
+          labels = c("A", "B", "C"),
+          ncol = 3, nrow = 1,
+          common.legend = TRUE,
+          align = "hv")
+dev.off()
+
+
+## length accuracy by size
+
+ls1 <- ggplot(data = l.all.data,
+              aes(x = l.all.data$value.date1, y = l.all.data$perror,
+                  color = factor(l.all.data$tree))) +
+  geom_point() +
+  ylim(-100,250)
+
+
+ls2 <- ggplot(data = l.all.data,
+              aes(x = l.all.data$value.date2, y = l.all.data$perror,
+                  color = factor(l.all.data$tree))) +
+  geom_point() +
+  ylim(-100,250)
+
+lsavg <- ggplot(data = l.all.data,
+                aes(x = l.all.data$value.avg, y = l.all.data$perror,
+                    color = factor(l.all.data$tree))) +
+  geom_point() +
+  ylim(-100,250)
+
+jpeg("../OUT/FIGURE.LengthAccuracySizeZoom.jpg", width = 1800, height = 600)
+ggarrange(ls1, ls2, lsavg, 
+          labels = c("A", "B", "C"),
+          ncol = 3, nrow = 1,
+          common.legend = TRUE,
+          align = "hv")
+dev.off()
+
+
+
+## length, to branch, accuracy by size
+
+lbs1 <- ggplot(data = lb,
+              aes(x = lb$value.date1, y = lb$perror,
+                  color = factor(lb$tree))) +
+  geom_point()
+
+
+lbs2 <- ggplot(data = lb,
+              aes(x = lb$value.date2, y = lb$perror,
+                  color = factor(lb$tree))) +
+  geom_point()
+
+lbsavg <- ggplot(data = lb,
+                aes(x = lb$value.avg, y = lb$perror,
+                    color = factor(lb$tree))) +
+  geom_point()
+
+jpeg("../OUT/FIGURE.LengthBranchAccuracySize.jpg", width = 1800, height = 600)
+ggarrange(lbs1, lbs2, lbsavg, 
+          labels = c("A", "B", "C"),
+          ncol = 3, nrow = 1,
+          common.legend = TRUE,
+          align = "hv")
+dev.off()
