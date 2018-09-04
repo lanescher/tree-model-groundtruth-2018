@@ -231,3 +231,25 @@ ggarrange(lbs1, lbs2, lbsavg,
           common.legend = TRUE,
           align = "hv")
 dev.off()
+
+
+
+
+
+
+jpeg("../OUT/FIGURE.DiameterLengthAccuracy.jpg", width = 1800, height = 900)
+ggarrange(davg, lbavg, 
+          labels = c("A", "B"),
+          ncol = 2, nrow = 1,
+          common.legend = TRUE,
+          align = "hv")
+dev.off()
+
+
+jpeg("../OUT/FIGURE.DiameterLengthAccuracySize.jpg", width = 1800, height = 900)
+ggarrange(dsavg, lbsavg, 
+          labels = c("A", "B"),
+          ncol = 2, nrow = 1,
+          common.legend = TRUE,
+          align = "hv")
+dev.off()
