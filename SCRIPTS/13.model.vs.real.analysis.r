@@ -1,44 +1,7 @@
 # model vs real analysis
 
-# set wd
-setwd("C:/Users/clane_897q3pb/Documents/Github/tree-model-groundtruth-2018")
-
-# INPUT BRANCH NUMBER AND MODEL DATES
-tree <- "walnut2"
-branches <- c("01", "06", "07", "11", "12", "13")
-branch <- c("01", "06", "07", "11", "12", "13")
-date1 <- "180228"
-date2 <- "180328"
-dates <- c("180228", "180328")
-
-# INPUT BRANCH NUMBER AND MODEL DATES
-tree <- "memorialoak"
-branches <- c("01", "03", "05", "08", "09", "10", "13")
-branch <- c("01", "03", "05", "08", "09", "10", "13")
-date1 <- "171221"
-date2 <- "180109"
-dates <- c("171221", "180109")
-
-# INPUT BRANCH NUMBER AND MODEL DATES
-tree <- "elm"
-branches <- c("01","02", "03", "04", "10", "14", "15")
-branch <- c("01","02", "03", "04", "10", "14", "15")
-date1 <- "180222"
-date2 <- "180323"
-dates <- c("180222", "180323")
-
-branches <- c("15")
-branch <- c("15")
-
 
 library(ggplot2)
-
-# read in all data
-source("SCRIPTS/12.calculate.model.real.error.r")
-
-# read in error functions
-source("SCRIPTS/10.define.error.functions.r")
-
 
 # correlations between model and real
 summary(lm(all.data$vert.dist[which(all.data$measurement == "length" & all.data$endpoint == "branch")] ~ 
