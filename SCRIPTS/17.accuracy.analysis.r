@@ -253,3 +253,6 @@ ggarrange(dsavg, lbsavg,
           common.legend = TRUE,
           align = "hv")
 dev.off()
+
+
+mean(d.all.data$error.date1[which(d.all.data$value.real > 10)], na.rm = TRUE)
