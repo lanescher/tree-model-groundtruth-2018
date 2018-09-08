@@ -255,4 +255,62 @@ ggarrange(dsavg, lbsavg,
 dev.off()
 
 
+ggplot(data = l.all.data,
+       aes(x = l.all.data$diam, y = l.all.data$error,
+           color = factor(l.all.data$tree))) +
+  geom_point()
+
+
+### set up for diameter error by size figure
+mm <- as.data.frame(d.all.data$error.date1)
+mm$d2 <- d.all.data$error.date2
+
+d.all.data$min <- apply(mm, 1, FUN=min)
+d.all.data$max <- apply(mm, 1, FUN=max)
+
+
+ggplot() +
+  geom_linerange(data=d.all.data, 
+                 mapping=aes(x=d.all.data$value.real, 
+                             ymin=d.all.data$min, 
+                             ymax=d.all.data$max),
+                 color = d.all.data$color,
+                 size = 1) +
+  xlim(0,40) +
+  ylim(-5, 15) + 
+  geom_point(data=d.all.data, 
+             mapping=aes(x=d.all.data$value.real, y=d.all.data$error.avg), 
+             size=0.5, color = d.all.data$color) +
+  labs(x = "branch diameter", y = "diameter absolute error (cm)") +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"))
+  
+
+
+### set up for length error by size figure
+mm <- as.data.frame(lb$error.date1)
+mm$d2 <- lb$error.date2
+
+lb$min <- apply(mm, 1, FUN=min)
+lb$max <- apply(mm, 1, FUN=max)
+
+ggplot() +
+  geom_linerange(data=lb, 
+                 mapping=aes(x=lb$diam, 
+                             ymin=lb$min, 
+                             ymax=lb$max),
+                 color = lb$color,
+                 size = 1) +
+  geom_point(data=lb, 
+             mapping=aes(x=lb$diam, y=lb$error.avg), 
+             size=0.5, color = lb$color) +
+  labs(x = "branch diameter", y = "length absolute error (cm)") +
+  xlim(0,40) +
+  ylim(-10,10) +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"))
+
+
+
+
 mean(d.all.data$error.date1[which(d.all.data$value.real > 10)], na.rm = TRUE)
