@@ -151,7 +151,7 @@ dev.off()
 ## diameter accuracy by size
 
 ds1 <- ggplot(data = d.all.data,
-             aes(x = d.all.data$value.date1, y = d.all.data$perror,
+             aes(x = d.all.data$value.real, y = d.all.data$perror.date1,
                  color = factor(d.all.data$tree))) +
   geom_point()
 
@@ -261,7 +261,7 @@ ggplot(data = l.all.data,
   geom_point()
 
 
-### set up for diameter error by size figure
+### set up for diameter error by size figure ----
 mm <- as.data.frame(d.all.data$error.date1)
 mm$d2 <- d.all.data$error.date2
 
@@ -269,13 +269,14 @@ d.all.data$min <- apply(mm, 1, FUN=min)
 d.all.data$max <- apply(mm, 1, FUN=max)
 
 
-ggplot() +
+ds <- ggplot() +
   geom_linerange(data=d.all.data, 
                  mapping=aes(x=d.all.data$value.real, 
                              ymin=d.all.data$min, 
                              ymax=d.all.data$max),
                  color = d.all.data$color,
-                 size = 1) +
+                 size = 1,
+                 show.legend = TRUE) +
   xlim(0,40) +
   ylim(-5, 15) + 
   geom_point(data=d.all.data, 
@@ -287,30 +288,34 @@ ggplot() +
   
 
 
-### set up for length error by size figure
+### set up for length error by size figure ----
 mm <- as.data.frame(lb$error.date1)
 mm$d2 <- lb$error.date2
 
 lb$min <- apply(mm, 1, FUN=min)
 lb$max <- apply(mm, 1, FUN=max)
 
-ggplot() +
+ls <- ggplot() +
   geom_linerange(data=lb, 
                  mapping=aes(x=lb$diam, 
                              ymin=lb$min, 
                              ymax=lb$max),
                  color = lb$color,
-                 size = 1) +
+                 size = 1,
+                 show.legend = TRUE) +
   geom_point(data=lb, 
              mapping=aes(x=lb$diam, y=lb$error.avg), 
              size=0.5, color = lb$color) +
   labs(x = "branch diameter", y = "length absolute error (cm)") +
   xlim(0,40) +
-  ylim(-10,10) +
   geom_hline(yintercept = 0, color = "grey45") +
-  theme(panel.background = element_rect(fill = "white", colour = "grey50"))
+  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
 
 
+# make graph ----
+jpeg("../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 1800, height = 900)
+ggarrange(ds, ls, ncol = 2, nrow = 1, labels = c("A", "B"),
+          align = "hv", common.legend = TRUE)
+dev.off()
 
 
-mean(d.all.data$error.date1[which(d.all.data$value.real > 10)], na.rm = TRUE)
