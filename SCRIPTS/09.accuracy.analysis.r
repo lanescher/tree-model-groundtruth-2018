@@ -78,12 +78,11 @@ dev.off()
 
 lb1 <- ggplot(data = lb,
              aes(x = lb$value.date1, y = lb$value.real,
-                 color = factor(lb$tree), label = lb$node)) +
+                 color = factor(lb$tree))) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1) +
   geom_smooth(method = "lm", aes(color = factor(lb$tree))) +
-  xlim(0,200) + ylim(0,200) +
-  geom_text(aes(label=lb$node),hjust=0, vjust=0)
+  xlim(0,200) + ylim(0,200)
 
 
 lb2 <- ggplot(data = lb,
@@ -312,10 +311,34 @@ ls <- ggplot() +
   geom_hline(yintercept = 0, color = "grey45") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
 
+## and length to end
+mm <- as.data.frame(le$error.date1)
+mm$d2 <- le$error.date2
+
+le$min <- apply(mm, 1, FUN=min)
+le$max <- apply(mm, 1, FUN=max)
+
+les <- ggplot() +
+  geom_linerange(data=le, 
+                 mapping=aes(x=le$diam, 
+                             ymin=le$min, 
+                             ymax=le$max),
+                 color = le$color,
+                 size = 1,
+                 show.legend = TRUE) +
+  geom_point(data=le, 
+             mapping=aes(x=le$diam, y=le$error.avg), 
+             size=0.5, color = le$color) +
+  labs(x = "branch diameter", y = "length absolute error (cm)") +
+  xlim(0,18) +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
+
+
 
 # make graph ----
 jpeg("../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 1800, height = 900)
-ggarrange(ds, ls, ncol = 2, nrow = 1, labels = c("A", "B"),
+ggarrange(ds, ls, les, ncol = 3, nrow = 1, labels = c("A", "B"),
           align = "hv", common.legend = TRUE)
 dev.off()
 
