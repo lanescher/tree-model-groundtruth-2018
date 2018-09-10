@@ -78,11 +78,12 @@ dev.off()
 
 lb1 <- ggplot(data = lb,
              aes(x = lb$value.date1, y = lb$value.real,
-                 color = factor(lb$tree))) +
+                 color = factor(lb$tree), label = lb$node)) +
   geom_point() +
   geom_abline(intercept = 0, slope = 1) +
   geom_smooth(method = "lm", aes(color = factor(lb$tree))) +
-  xlim(0,200) + ylim(0,200)
+  xlim(0,200) + ylim(0,200) +
+  geom_text(aes(label=lb$node),hjust=0, vjust=0)
 
 
 lb2 <- ggplot(data = lb,

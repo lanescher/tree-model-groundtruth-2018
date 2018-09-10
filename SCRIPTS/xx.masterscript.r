@@ -8,7 +8,7 @@ library(ggpubr)
 
 
 # read in and combine all data
-source("../SCRIPTS/001.combine.all.data.r")
+source("../SCRIPTS/01.combine.all.data.r")
 
 # count measurements
 source("../SCRIPTS/02.count.measurements.r")
