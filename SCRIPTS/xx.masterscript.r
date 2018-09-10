@@ -28,7 +28,8 @@ source("../SCRIPTS/11a.calculate.model.consistency.r")
 # subset data
 source("../SCRIPTS/16.subset.data.r")
 
-
+# find measurements with large errors
+source("../SCRIPTS/18.find.measurements.with.large.error.r")
 
 
 
