@@ -31,4 +31,6 @@ source("../SCRIPTS/07.subset.data.r")
 # find measurements with large errors
 source("../SCRIPTS/08.find.measurements.with.large.error.r")
 
+# make error table
+source("../SCRIPTS/10.make.error.table.r")
 
