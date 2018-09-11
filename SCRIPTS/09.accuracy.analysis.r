@@ -306,7 +306,7 @@ ls <- ggplot() +
   geom_point(data=lb, 
              mapping=aes(x=lb$diam, y=lb$error.avg), 
              size=0.5, color = lb$color) +
-  labs(x = "branch diameter", y = "length absolute error (cm)") +
+  labs(x = "branch diameter", y = "length absolute error (cm) - node to node") +
   xlim(0,40) +
   geom_hline(yintercept = 0, color = "grey45") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
@@ -329,7 +329,7 @@ les <- ggplot() +
   geom_point(data=le, 
              mapping=aes(x=le$diam, y=le$error.avg), 
              size=0.5, color = le$color) +
-  labs(x = "branch diameter", y = "length absolute error (cm)") +
+  labs(x = "branch diameter", y = "length absolute error (cm) - node to end") +
   xlim(0,18) +
   geom_hline(yintercept = 0, color = "grey45") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
