@@ -28,8 +28,8 @@ source("../SCRIPTS/06.calculate.model.consistency.r")
 # subset data
 source("../SCRIPTS/07.subset.data.r")
 
-# find measurements with large errors
-source("../SCRIPTS/08.find.measurements.with.large.error.r")
+# make graphs for accuracy
+source("../SCRIPTS/09.accuracy.analysis.r")
 
 # make error table
 source("../SCRIPTS/10.make.error.table.r")
