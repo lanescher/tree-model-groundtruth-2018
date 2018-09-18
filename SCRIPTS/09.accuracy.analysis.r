@@ -76,8 +76,8 @@ les <- ggplot() +
 
 
 # make graph ----
-jpeg("../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 1800, height = 900)
-ggarrange(ds, ls, les, ncol = 3, nrow = 1, labels = c("A", "B", "C"),
-          align = "hv", common.legend = TRUE)
+jpeg("../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 500, height = 1000)
+ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+          common.legend = TRUE)
 dev.off()
 
