@@ -165,6 +165,7 @@ len.error.table <- err
 ## combine the tables ----
 
 conerrors <- cbind(len.error.table, diam.error.table)
+conerrors <- conerrors[,-5]
 colnames(conerrors) <- c("Size Class", "Number lengths measured", "Length absolute error (cm)",
                       "Length relative error", "Number diameters measured", "Diameter absolute error (cm)",
                       "Diameter relative error")

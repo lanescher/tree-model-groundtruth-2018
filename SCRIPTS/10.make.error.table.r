@@ -5,7 +5,8 @@ max(d.all.data$value.real, na.rm = TRUE)
 stderr <- function(x) sd(x)/sqrt(length(x))
 
 # classes will be <5, 5-10, 10-20, 30-40, 40+
-
+absdiamerr <- alldiamerror
+diamerr <- alldiamerror
 
 # make df with diam errors
 diamerror <- as.data.frame(d.all.data$value.real[which(is.na(d.all.data$error.date1) == FALSE)])
@@ -88,14 +89,14 @@ diam.error.table <- err
 ## now for length ----
 
 # make df with length errors
-lenerror <- as.data.frame(lb$diam[which(is.na(lb$error.date1) == FALSE)])
-lenerror$error <- lb$error.date1[which(is.na(lb$error.date1) == FALSE)]
-lenerror$perror <- lb$perror.date1[which(is.na(lb$perror.date1) ==FALSE)]
+lenerror <- as.data.frame(abs(lb$diam[which(is.na(lb$error.date1) == FALSE)]))
+lenerror$error <- abs(lb$error.date1[which(is.na(lb$error.date1) == FALSE)])
+lenerror$perror <- abs(lb$perror.date1[which(is.na(lb$perror.date1) ==FALSE)])
 colnames(lenerror) <- c("diam", "error", "perror")
 
-lenerror2 <- as.data.frame(lb$diam[which(is.na(lb$error.date2) == FALSE)])
-lenerror2$error <- lb$error.date2[which(is.na(lb$error.date2) == FALSE)]
-lenerror2$perror <- lb$perror.date2[which(is.na(lb$perror.date2) ==FALSE)]
+lenerror2 <- as.data.frame(abs(lb$diam[which(is.na(lb$error.date2) == FALSE)]))
+lenerror2$error <- abs(lb$error.date2[which(is.na(lb$error.date2) == FALSE)])
+lenerror2$perror <- abs(lb$perror.date2[which(is.na(lb$perror.date2) ==FALSE)])
 colnames(lenerror2) <- c("diam", "error", "perror")
 
 alllenerror <- rbind(lenerror, lenerror2)
@@ -173,6 +174,8 @@ errors <- errors[,-5]
 colnames(errors) <- c("Size Class", "Number lengths measured", "Length absolute error (cm)",
                       "Length relative error", "Number diameters measured", "Diameter absolute error (cm)",
                       "Diameter relative error")
+
+abserrors <- errors
 
 
 write.csv(errors, "../OUT/TABLE.errors.by.size.class.csv")
