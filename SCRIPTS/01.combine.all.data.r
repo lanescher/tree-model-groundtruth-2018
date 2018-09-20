@@ -3,6 +3,8 @@
 tree <- "elm"
 branch <- c("01", "02", "03", "04", "10", "14", "15")
 dates <- c("180222", "180323")
+date1 <- "overcast"
+date2 <- "sunny"
 
 source("../SCRIPTS/000.read.in.data.r")
 
@@ -15,6 +17,8 @@ elm.all.data$tree <- "elm"
 tree <- "walnut2"
 branch <- c("01", "03", "04", "06", "07", "11", "12", "13", "14")
 dates <- c("180228", "180328")
+date1 <- "sunny"
+date2 <- "overcast"
 
 source("../SCRIPTS/000.read.in.data.r")
 
@@ -26,6 +30,8 @@ walnut2.all.data$tree <- "walnut2"
 tree <- "memorialoak"
 branch <- c("01", "03", "05", "08", "09", "10", "13")
 dates <- c("171221", "180109")
+date1 <- "overcast"
+date2 <- "sunny"
 
 source("../SCRIPTS/000.read.in.data.r")
 
