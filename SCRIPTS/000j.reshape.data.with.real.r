@@ -71,6 +71,10 @@ all.data$endpoint[which(all.data$branch == "main" &
 all.data$endpoint[which(all.data$branch == "branch" & 
                                all.data$branch.nodeto == "end")] <- "end"
 
+# add column for weather
+all.data$weather <- NA
+all.data$weather[which(all.data$date == "date1")] <- date1
+all.data$weather[which(all.data$date == "date2")] <- date2
 
 
 date1data <- all.data[which(all.data$date == "date1"),]
@@ -97,13 +101,14 @@ all.data <- merge(all.data, realbroken, by = c("node", "branch", "measurement", 
                                          "is.in.x", "vert.dist", "center.dist", "hor.dist",
                                          "theta", "main.nodeto", "branch.nodeto"))
 
-all.data <- all.data[, -c(12, 14, 15, 17, 18, 20, 21, 23)]
+all.data <- all.data[, -c(12, 14, 16, 18, 20, 22, 23, 24, 26, 27)]
 
 
 colnames(all.data) <- c("node", "branch", "measurement", "endpoint", "is.in", 
                         "vert.dist", "hor.dist", "center.dist", "theta",
                         "main.nodeto", "branch.nodeto",
-                        "value.date1", "value.date2", "value.real", "broken.real")
+                        "value.date1", "weather.date1", "value.date2", "weather.date2", 
+                        "value.real", "broken.real")
 
 
 all.data$value.date1 <- as.numeric(all.data$value.date1)
