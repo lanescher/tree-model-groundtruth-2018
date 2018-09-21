@@ -1,3 +1,22 @@
+# t tests
+ttest <- as.data.frame(c("All", "Memorial Oak", "Elm", "Walnut"))
+ttest$diameter <- NA
+ttest$length <- NA
+ttest$lengthbranch <- NA
+ttest$lengthend <- NA
+
+t.test(d.all.weather$perror.x ~ d.all.weather$weather)
+t.test(d.all.weather$perror.x[which(d.all.weather$tree == "memorialoak")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "memorialoak")])
+t.test(d.all.weather$perror.x[which(d.all.weather$tree == "elm")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "elm")])
+t.test(d.all.weather$perror.x[which(d.all.weather$tree == "walnut2")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "walnut2")])
+
+
+
+
+
 
 # add size class column
 d.all.weather$sizeclass <- NA
