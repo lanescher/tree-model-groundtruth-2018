@@ -19,7 +19,8 @@ ds <- ggplot() +
   xlim(0,40) +
   ylim(-5, 15) + 
   geom_point(data=d.all.data, 
-             mapping=aes(x=d.all.data$value.real, y=d.all.data$error.avg), 
+             aes(x=d.all.data$value.real, 
+                 y=d.all.data$error.avg), 
              size=0.5, color = d.all.data$color) +
   labs(x = "branch diameter", y = "diameter absolute error (cm)") +
   geom_hline(yintercept = 0, color = "grey45") +
