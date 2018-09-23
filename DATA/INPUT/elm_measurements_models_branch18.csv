@@ -1,6 +1,6 @@
 nodes,presence,random,mainnodeto,branchnodeto,maindiameter.171221,mainlength.171221,branchdiameter.171221,branchlength.171221,maindiameter.180109,mainlength.180109,branchdiameter.180109,branchlength.180109
-18,180222,,,,,,,,,,,
-18-4-1,180222,,,,,,,,,,,
+18,180222,0.039746842,NA,18.1,9.91,NA,6.24,30.3,,,,
+18.4.1,180222,0.096181528,18.4.2,end,4.02,10.4,3.05,6.91,,,,
 18-3,180222,,,,,,,,,,,
 18-5,180222,,,,,,,,,,,
 18-2,180222,,,,,,,,,,,
@@ -10,3 +10,5 @@ nodes,presence,random,mainnodeto,branchnodeto,maindiameter.171221,mainlength.171
 18-7,180222,,,,,,,,,,,
 18-1,180222,,,,,,,,,,,
 18-4-3,180222,,,,,,,,,,,
+19,180222,0.17297297,NA,19.1,NA,NA,5.24,36.9,,,,
+22,180222,0.09993643,NA,22.1,6.68,NA,NA,NA,,,,

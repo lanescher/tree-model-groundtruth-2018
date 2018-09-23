@@ -1,7 +1,7 @@
 
 # INPUT BRANCH NUMBER AND MODEL DATES
 tree <- "elm"
-branch <- c("01", "02", "03", "04", "10", "14", "15")
+branch <- c("01", "02", "03", "04", "10", "14", "15", "17", "18")
 dates <- c("180222", "180323")
 date1 <- "overcast"
 date2 <- "sunny"
