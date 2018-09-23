@@ -5,17 +5,41 @@ ttest$length <- NA
 ttest$lengthbranch <- NA
 ttest$lengthend <- NA
 
-t.test(d.all.weather$perror.x ~ d.all.weather$weather)
-t.test(d.all.weather$perror.x[which(d.all.weather$tree == "memorialoak")] ~ 
-         d.all.weather$weather[which(d.all.weather$tree == "memorialoak")])
-t.test(d.all.weather$perror.x[which(d.all.weather$tree == "elm")] ~ 
-         d.all.weather$weather[which(d.all.weather$tree == "elm")])
-t.test(d.all.weather$perror.x[which(d.all.weather$tree == "walnut2")] ~ 
-         d.all.weather$weather[which(d.all.weather$tree == "walnut2")])
+ttest[1,2] <- t.test((abs(d.all.weather$error.x) ~ d.all.weather$weather))$p.value
+ttest[2,2] <- t.test((abs(d.all.weather$error.x)[which(d.all.weather$tree == "memorialoak")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "memorialoak")]))$p.value
+ttest[3,2] <- t.test((abs(d.all.weather$error.x)[which(d.all.weather$tree == "elm")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "elm")]))$p.value
+ttest[4,2] <- t.test((abs(d.all.weather$error.x)[which(d.all.weather$tree == "walnut2")] ~ 
+         d.all.weather$weather[which(d.all.weather$tree == "walnut2")]))$p.value
+
+ttest[1,3] <- t.test((abs(l.all.weather$error.x) ~ l.all.weather$weather))$p.value
+ttest[2,3] <- t.test((abs(l.all.weather$error.x)[which(l.all.weather$tree == "memorialoak")] ~ 
+                       l.all.weather$weather[which(l.all.weather$tree == "memorialoak")]))$p.value
+ttest[3,3] <- t.test((abs(l.all.weather$error.x)[which(l.all.weather$tree == "elm")] ~ 
+                       l.all.weather$weather[which(l.all.weather$tree == "elm")]))$p.value
+ttest[4,3] <- t.test((abs(l.all.weather$error.x)[which(l.all.weather$tree == "walnut2")] ~ 
+                       l.all.weather$weather[which(l.all.weather$tree == "walnut2")]))$p.value
+
+ttest[1,4] <- t.test((abs(lb.weather$error.x) ~ lb.weather$weather))$p.value
+ttest[2,4] <- t.test((abs(lb.weather$error.x)[which(lb.weather$tree == "memorialoak")] ~ 
+                       lb.weather$weather[which(lb.weather$tree == "memorialoak")]))$p.value
+ttest[3,4] <- t.test((abs(lb.weather$error.x)[which(lb.weather$tree == "elm")] ~ 
+                       lb.weather$weather[which(lb.weather$tree == "elm")]))$p.value
+ttest[4,4] <- t.test((abs(lb.weather$error.x)[which(lb.weather$tree == "walnut2")] ~ 
+                       lb.weather$weather[which(lb.weather$tree == "walnut2")]))$p.value
 
 
+ttest[1,5] <- t.test((abs(le.weather$error.x) ~ le.weather$weather))$p.value
+ttest[2,5] <- t.test((abs(le.weather$error.x)[which(le.weather$tree == "memorialoak")] ~ 
+                       le.weather$weather[which(le.weather$tree == "memorialoak")]))$p.value
+ttest[3,5] <- t.test((abs(le.weather$error.x)[which(le.weather$tree == "elm")] ~ 
+                       le.weather$weather[which(le.weather$tree == "elm")]))$p.value
+ttest[4,5] <- t.test((abs(le.weather$error.x)[which(le.weather$tree == "walnut2")] ~ 
+                       le.weather$weather[which(le.weather$tree == "walnut2")]))$p.value
 
-
+names(ttest) <- c("", "Diameter", "Length", "Length, to branch", "Length, to end")
+write.csv(ttest, "../OUT/TABLE.light.conditions.pvalues.absvalueerror.csv")
 
 
 # add size class column
@@ -67,15 +91,15 @@ lb.weather$sizeclass[which(lb.weather$value.real >= 30)] <- ">30"
 lb.weather$sizeclass <- factor(lb.weather$sizeclass, levels = c("<5", "5 - 10", "10 - 20", "20 - 30", ">30"))
 
 
-d <- ggplot(d.all.weather, aes(x = tree, y = abs(error.x), fill = interaction(weather, sizeclass, tree))) +
+d <- ggplot(d.all.weather, aes(x = tree, y = error.x, fill = interaction(weather, sizeclass, tree))) +
   geom_boxplot() +
   theme(legend.position = "none")
 
-lb <- ggplot(lb.weather, aes(x = tree, y = abs(error.x), fill = interaction(weather, sizeclass, tree))) +
+lb <- ggplot(lb.weather, aes(x = tree, y = error.x, fill = interaction(weather, sizeclass, tree))) +
   geom_boxplot() +
   theme(legend.position = "none")
 
-le <- ggplot(le.weather, aes(x = tree, y = abs(error.x), fill = interaction(weather, sizeclass, tree))) +
+le <- ggplot(le.weather, aes(x = tree, y = error.x, fill = interaction(weather, sizeclass, tree))) +
   geom_boxplot() +
   theme(legend.position = "none")
 
@@ -101,7 +125,7 @@ lighten <- function(color, factor=1.25){
 }
 
 
-d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x), 
+d <- ggplot(data = d.all.weather, aes(x = tree, y = error.x, 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -115,7 +139,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
 
 
 
-ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x), 
+ggplot(data = l.all.weather, aes(x = tree, y = error.x, 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -130,7 +154,7 @@ ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x),
 
 
 
-lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
+lb <- ggplot(data = lb.weather, aes(x = tree, y = error.x,
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -144,7 +168,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
 
 
 
-le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
+le <- ggplot(data = le.weather, aes(x = tree, y = error.x,
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
