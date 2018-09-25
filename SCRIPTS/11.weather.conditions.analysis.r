@@ -125,7 +125,7 @@ lighten <- function(color, factor=1.25){
 }
 
 
-d <- ggplot(data = d.all.weather, aes(x = tree, y = error.x, 
+d <- ggplot(data = d.all.weather, aes(x = tree, y = perror.x, 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -139,7 +139,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = error.x,
 
 
 
-ggplot(data = l.all.weather, aes(x = tree, y = error.x, 
+ggplot(data = l.all.weather, aes(x = tree, y = perror.x, 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -153,8 +153,7 @@ ggplot(data = l.all.weather, aes(x = tree, y = error.x,
 
 
 
-
-lb <- ggplot(data = lb.weather, aes(x = tree, y = error.x,
+lb <- ggplot(data = lb.weather, aes(x = tree, y = perror.x,
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -168,7 +167,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = error.x,
 
 
 
-le <- ggplot(data = le.weather, aes(x = tree, y = error.x,
+le <- ggplot(data = le.weather, aes(x = tree, y = perror.x,
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -181,7 +180,7 @@ le <- ggplot(data = le.weather, aes(x = tree, y = error.x,
   geom_hline(yintercept = 0, color = "grey60")
 
 
-jpeg("../OUT/FIGURE.lightconditions.error.jpg", width = 400, height = 1000)
+jpeg("../OUT/FIGURE.lightconditions.error-percent.jpg", width = 400, height = 1000)
 ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
