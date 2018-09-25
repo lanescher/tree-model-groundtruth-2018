@@ -82,3 +82,40 @@ ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
           common.legend = TRUE)
 dev.off()
 
+
+# do it without lines ----
+ds <- ggplot() +
+  xlim(0,40) +
+  ylim(-5, 15) + 
+  geom_point(data=d.all.data, 
+             aes(x=d.all.data$value.real, 
+                 y=d.all.data$error.avg), 
+             size=1, color = d.all.data$color) +
+  labs(x = "", y = "diameter error (cm)") +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"))
+
+
+ls <- ggplot() +
+  geom_point(data=lb, 
+             mapping=aes(x=lb$diam, y=lb$error.avg), 
+             size=1, color = lb$color) +
+  labs(x = "", y = "length error (cm) - node to node") +
+  xlim(0,40) +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
+
+les <- ggplot() +
+  geom_point(data=le, 
+             mapping=aes(x=le$diam, y=le$error.avg), 
+             size=1, color = le$color) +
+  labs(x = "branch diameter (cm)", y = "length error (cm) - node to end") +
+  xlim(0,18) +
+  geom_hline(yintercept = 0, color = "grey45") +
+  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
+
+
+jpeg("../OUT/FIGURE.diam.length.accuracy.size-nolines.jpg", width = 500, height = 1000)
+ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+          common.legend = TRUE)
+dev.off()
