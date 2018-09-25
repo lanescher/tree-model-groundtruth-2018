@@ -8,8 +8,8 @@ stderr <- function(x) sd(x)/sqrt(length(x))
 
 
 # make df with diam errors
-diamerror <- as.data.frame(d.all.data$value.real[which(is.na(d.all.data$error.date1) == FALSE & 
-                                                         is.na(d.all.data$error.date2) == FALSE)])
+diamerror <- as.data.frame(abs(d.all.data$value.real[which(is.na(d.all.data$error.date1) == FALSE & 
+                                                         is.na(d.all.data$error.date2) == FALSE)]))
 diamerror$error <- abs(d.all.data$error[which(is.na(d.all.data$error.date1) == FALSE & 
                                                   is.na(d.all.data$error.date2) == FALSE)])
 diamerror$perror <- abs(d.all.data$perror[which(is.na(d.all.data$perror.date1) ==FALSE & 
