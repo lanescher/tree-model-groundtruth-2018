@@ -2,12 +2,9 @@ library(ggplot2)
 library(ggpubr)
 # master script
 
-# find corresponding nodes in the two models
-# Produces csv files. Results are not used for subsequent analysis
-# source("../SCRIPTS/01.read.and.merge.node.lists.r")
-
 
 # read in and combine all data
+# this is where you add tree info
 source("../SCRIPTS/01.combine.all.data.r")
 
 # count measurements
@@ -29,8 +26,16 @@ source("../SCRIPTS/06.calculate.model.consistency.r")
 source("../SCRIPTS/07.subset.data.r")
 
 # make graphs for accuracy
-source("../SCRIPTS/09.accuracy.analysis.r")
+source("../SCRIPTS/08a.accuracy.analysis.r")
 
-# make error table
-source("../SCRIPTS/10.make.error.table.r")
+# make accuracy table
+source("../SCRIPTS/08b.make.accuracy.table.r")
 
+# make graphs for consistency
+source("../SCRIPTS/09a.consistency.analysis.r")
+
+# make consistency table
+source("../SCRIPTS/09b.make.consistency.table.r")
+
+# weather analysis
+source("../SCRIPTS/10.weather.conditions.analysis.r")
