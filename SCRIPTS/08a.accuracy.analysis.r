@@ -75,12 +75,11 @@ les <- ggplot() +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
 
 
-
-# make graph ----
-jpeg("../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 500, height = 1000)
-ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
           common.legend = TRUE)
-dev.off()
+ggsave(plot = figure, "../OUT/FIGURE.diam.length.accuracy.size.jpg", width = 5,
+       height = 10)
+
 
 
 # do it without lines ----
@@ -115,10 +114,11 @@ les <- ggplot() +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
 
 
-jpeg("../OUT/FIGURE.diam.length.accuracy.size-nolines.jpg", width = 500, height = 1000)
-ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
-          common.legend = TRUE)
-dev.off()
+
+figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+                    common.legend = TRUE)
+ggsave(plot = figure, "../OUT/FIGURE.diam.length.accuracy.size-nolines.jpg", width = 5,
+       height = 10)
 
 
 
@@ -165,7 +165,9 @@ les <- ggplot() +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
 
 
-jpeg("../OUT/FIGURE.diam.length.accuracy.size-nolines2.jpg", width = 500, height = 1000)
-ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
-          common.legend = TRUE)
-dev.off()
+
+
+figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+                    common.legend = TRUE)
+ggsave(plot = figure, "../OUT/FIGURE.diam.length.accuracy.size-nolines2.jpg", width = 5,
+       height = 10)
