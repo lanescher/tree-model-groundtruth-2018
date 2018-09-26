@@ -180,8 +180,8 @@ le <- ggplot(data = le.weather, aes(x = tree, y = perror.x,
   geom_hline(yintercept = 0, color = "grey60")
 
 
-jpeg("../OUT/FIGURE.lightconditions.error-percent.jpg", width = 400, height = 1000)
-ggarrange(d, lb, le, labels = c("A", "B", "C"),
+figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
-dev.off()
+ggsave(plot = figure, "../OUT/FIGURE.lightconditions.error-percent.jpg",
+       width = 4, height = 10)
