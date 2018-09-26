@@ -36,9 +36,9 @@ lec <- ggplot(data = le, aes(x = le$diam, y = abs(le$error))) +
                               name = "Tree",
                      labels = c("Elm", "Oak", "Walnut"))
 
-jpeg("../OUT/FIGURE.consistency.jpg", width = 900, height = 300)
-ggarrange(dc, lbc, lec, ncol = 3, nrow = 1, labels = c("A", "B", "C"),
+
+figure <- ggarrange(dc, lbc, lec, ncol = 3, nrow = 1, labels = c("A", "B", "C"),
           align = "hv", common.legend = TRUE, legend = "bottom",
           label.x = .88, label.y = .97)
-dev.off()
-
+ggsave(plot = figure, "../OUT/FIGURE.consistency.jpg",
+       width = 10, height = 5)
