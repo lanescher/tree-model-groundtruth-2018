@@ -39,7 +39,7 @@ ttest[4,5] <- t.test((abs(le.weather$error.x)[which(le.weather$tree == "walnut2"
                        le.weather$weather[which(le.weather$tree == "walnut2")]))$p.value
 
 names(ttest) <- c("", "Diameter", "Length", "Length, to branch", "Length, to end")
-write.csv(ttest, "../OUT/TABLE.light.conditions.pvalues.absvalueerror.csv")
+write.csv(ttest, "../OUT/TABLEx.light.conditions.pvalues.absvalueerror.csv")
 
 
 
@@ -133,5 +133,5 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
 figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
-ggsave(plot = figure, "../OUT/FIGURE.lightconditions.error.jpg",
+ggsave(plot = figure, "../OUT/FIGURE3.lightconditions.error.jpg",
        width = 4, height = 10)
