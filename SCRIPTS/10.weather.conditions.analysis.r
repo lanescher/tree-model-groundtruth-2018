@@ -73,10 +73,8 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
-                                        symbols = c("****", "***", "**", "*", "")))
-
-t.test((abs(d.all.weather$error.x)[which(d.all.weather$tree == "memorialoak")] ~ 
-          d.all.weather$weather[which(d.all.weather$tree == "memorialoak")]))$p.value
+                                        symbols = c("****", "***", "**", "*", ""))) +
+  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
 
 
 l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x), 
@@ -91,7 +89,8 @@ l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x),
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
-                     method = "t.test")
+                     method = "t.test") +
+  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
 
 
 
@@ -102,14 +101,15 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "error of lengths, node to node (cm)") +
+  labs(x = "", y = "error of lengths - node to node (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
-                                        symbols = c("****", "***", "**", "*", "")))
+                                        symbols = c("****", "***", "**", "*", ""))) +
+  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
 
 
 
@@ -120,14 +120,15 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "error of lengths, node to end (cm)") +
+  labs(x = "", y = "error of lengths - node to end (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
-                                        symbols = c("****", "***", "**", "*", "")))
+                                        symbols = c("****", "***", "**", "*", ""))) +
+  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
 
 
 figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
