@@ -75,6 +75,8 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
                                         symbols = c("****", "***", "**", "*", "")))
 
+t.test((abs(d.all.weather$error.x)[which(d.all.weather$tree == "memorialoak")] ~ 
+          d.all.weather$weather[which(d.all.weather$tree == "memorialoak")]))$p.value
 
 
 l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x), 

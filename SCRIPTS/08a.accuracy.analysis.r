@@ -17,7 +17,7 @@ ds <- ggplot() +
                              ymin=d.all.data$min, 
                              ymax=d.all.data$max),
                  color = d.all.data$color,
-                 size = 0.6,
+                 size = 0.4,
                  show.legend = TRUE) +
   xlim(0,40) +
   ylim(-5, 15) +
@@ -45,7 +45,7 @@ ls <- ggplot() +
                              ymin=lb$min, 
                              ymax=lb$max),
                  color = lb$color,
-                 size = 0.6,
+                 size = 0.4,
                  show.legend = TRUE) +
   labs(x = "", y = "length error (cm) - node to node") +
   xlim(0,40) +
@@ -69,7 +69,7 @@ les <- ggplot() +
                              ymin=le$min, 
                              ymax=le$max),
                  color = le$color,
-                 size = 0.6,
+                 size = 0.4,
                  show.legend = TRUE) +
   labs(x = "branch diameter (cm)", y = "length error (cm) - node to end") +
   xlim(0,18) +
