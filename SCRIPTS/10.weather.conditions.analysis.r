@@ -59,7 +59,7 @@ lighten <- function(color, factor=1.25){
 }
 
 
-ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x), 
+d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x), 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -105,7 +105,9 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
-                     method = "t.test")
+                     method = "t.test",
+                     symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
+                                        symbols = c("****", "***", "**", "*", "")))
 
 
 
