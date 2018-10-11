@@ -66,7 +66,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2"))) +
-  labs(x = "", y = "error of diameters (cm)") +
+  labs(x = "", y = "difference of diameters (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
@@ -74,7 +74,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
                                         symbols = c("****", "***", "**", "*", ""))) +
-  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
+  scale_x_discrete(labels = NULL)
 
 
 l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x), 
@@ -90,7 +90,7 @@ l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x),
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test") +
-  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
+  scale_x_discrete(labels = NULL)
 
 
 
@@ -101,7 +101,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "error of lengths - node to node (cm)") +
+  labs(x = "", y = "difference of interior segments (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
@@ -109,7 +109,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
                                         symbols = c("****", "***", "**", "*", ""))) +
-  scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
+  scale_x_discrete(labels = NULL)
 
 
 
@@ -120,7 +120,7 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "error of lengths - node to end (cm)") +
+  labs(x = "", y = "difference of distal segments (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
