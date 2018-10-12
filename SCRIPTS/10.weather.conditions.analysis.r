@@ -68,28 +68,15 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                                lighten("goldenrod2"))) +
   labs(x = "", y = "difference of \n diameters (cm)") +
   theme(legend.position = "none", 
-        panel.background = element_rect(fill = "white", colour = "grey50")) +
+        panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10),
+        axis.title.x = element_text(size = 1)) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
                      symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, 1), 
                                         symbols = c("****", "***", "**", "*", ""))) +
-  scale_x_discrete(labels = NULL)
-
-
-l <- ggplot(data = l.all.weather, aes(x = tree, y = abs(error.x), 
-                                 fill = interaction(tree, weather))) +
-  geom_boxplot() +
-  scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
-                               darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue"),
-                               lighten("goldenrod2")))  +
-  labs(x = "", y = "error of lengths (cm)") +
-  theme(legend.position = "none", 
-        panel.background = element_rect(fill = "white", colour = "grey50")) +
-  geom_hline(yintercept = 0, color = "grey60") +
-  stat_compare_means(aes(label = ..p.signif..),
-                     method = "t.test") +
   scale_x_discrete(labels = NULL)
 
 
@@ -103,7 +90,9 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                lighten("goldenrod2")))  +
   labs(x = "", y = "difference of \n interior segments (cm)") +
   theme(legend.position = "none", 
-        panel.background = element_rect(fill = "white", colour = "grey50")) +
+        panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10)) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
@@ -120,7 +109,7 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of distal segments (cm)") +
+  labs(x = "", y = "difference of \n distal segments (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -137,4 +126,4 @@ figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
 ggsave(plot = figure, "../OUT/FIGURE3.lightconditions.error.jpg",
-       width = 3.3, height = 5)
+       width = 3.3, height = 7)
