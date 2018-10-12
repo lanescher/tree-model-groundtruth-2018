@@ -21,7 +21,7 @@ ds <- ggplot() +
                  show.legend = TRUE) +
   xlim(0,40) +
   ylim(-5, 15) +
-  labs(x = "", y = "diameter error (cm)") +
+  labs(x = "", y = "diameter \n error (cm)") +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"))
   
@@ -47,7 +47,7 @@ ls <- ggplot() +
                  color = lb$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "", y = "length error (cm) - node to node") +
+  labs(x = "", y = "interior segment \n error (cm)") +
   xlim(0,40) +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
@@ -71,7 +71,7 @@ les <- ggplot() +
                  color = le$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "branch diameter (cm)", y = "length error (cm) - node to end") +
+  labs(x = "branch diameter (cm)", y = "distal segment \n error (cm)") +
   xlim(0,18) +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
@@ -79,8 +79,8 @@ les <- ggplot() +
 
 figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
           common.legend = TRUE, align = "hv")
-ggsave(plot = figure, "../OUT/FIGURE2.diam.length.accuracy.size.jpg", width = 5,
-       height = 10)
+ggsave(plot = figure, "../OUT/FIGURE2.diam.length.accuracy.size.jpg", width = 3.3,
+       height = 8)
 
 
 

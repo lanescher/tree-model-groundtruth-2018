@@ -342,12 +342,12 @@ lene.error.table <- err
 errors <- cbind(diam.error.table, len.error.table, lene.error.table)
 errors <- errors[,-c(6,11)]
 colnames(errors) <- c("Size Class", 
-                      "Number diameters measured", "Diameter error (cm)", "Diameter absolute error (cm)",
-                      "Diameter relative error", 
-                      "Number lengths measured", "Length error (cm)", "Length absolute error (cm)",
-                      "Length relative error",
-                      "Number lengths measured", "Length error (cm)", "Length absolute error (cm)",
-                      "Length relative error")
+                      "Number measured", "Average error (cm)", "Average error magnitude (cm)",
+                      "Relative error", 
+                      "Number measured", "Average error (cm)", "Average error magnitude (cm)",
+                      "Relative error",
+                      "Number measured", "Average error (cm)", "Average error magnitude (cm)",
+                      "Relative error")
 
 
 write.csv(errors, "../OUT/TABLE.errors.by.size.class.csv")
