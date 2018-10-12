@@ -66,7 +66,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2"))) +
-  labs(x = "", y = "difference of diameters (cm)") +
+  labs(x = "", y = "difference of \n diameters (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
@@ -101,7 +101,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of interior segments (cm)") +
+  labs(x = "", y = "difference of \n interior segments (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50")) +
   geom_hline(yintercept = 0, color = "grey60") +
@@ -122,7 +122,9 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                lighten("goldenrod2")))  +
   labs(x = "", y = "difference of distal segments (cm)") +
   theme(legend.position = "none", 
-        panel.background = element_rect(fill = "white", colour = "grey50")) +
+        panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10)) +
   geom_hline(yintercept = 0, color = "grey60") +
   stat_compare_means(aes(label = ..p.signif..),
                      method = "t.test",
@@ -135,4 +137,4 @@ figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
 ggsave(plot = figure, "../OUT/FIGURE3.lightconditions.error.jpg",
-       width = 4, height = 10)
+       width = 3.3, height = 5)
