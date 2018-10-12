@@ -1,4 +1,4 @@
-"","Size Class","Number diameters measured","Diameter error (cm)","Diameter absolute error (cm)","Diameter relative error","Number lengths measured","Length error (cm)","Length absolute error (cm)","Length relative error","Number lengths measured","Length error (cm)","Length absolute error (cm)","Length relative error"
+"","Size Class","Number measured","Average error (cm)","Average error magnitude (cm)","Relative error","Number measured","Average error (cm)","Average error magnitude (cm)","Relative error","Number measured","Average error (cm)","Average error magnitude (cm)","Relative error"
 "1","<5",531,"2.23 +- 0.10","2.40 +- 0.09","122.03%",81,"-1.50 +- 0.65","4.20 +- 0.49","16.81%",419,"-43.50 +- 2.76","49.43 +- 2.51","102.66%"
 "2","5-10",338,"1.58 +- 0.12","2.02 +- 0.10","29.64%",193,"-0.94 +- 0.43","4.11 +- 0.32","11.16%",107,"-63.31 +- 11.13","78.92 +- 10.15","152.14%"
 "3","10-20",208,"1.12 +- 0.13","1.58 +- 0.10","11.48%",166,"0.00 +- 0.39","3.58 +- 0.27","8.74%",12,"-50.89 +- 21.32","50.89 +- 21.32","22.43%"
