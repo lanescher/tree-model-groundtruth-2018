@@ -126,4 +126,4 @@ figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
 ggsave(plot = figure, "../OUT/FIGURE3.lightconditions.error.jpg",
-       width = 3.3, height = 7)
+       width = 3.3, height = 8)
