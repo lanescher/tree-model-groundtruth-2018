@@ -255,4 +255,4 @@ colnames(conerrors) <- c("Size Class",
                       "Relative difference")
 
 
-write.csv(conerrors, "../OUT/TABLE.con.errors.by.size.class.csv")
+write.csv(conerrors, "../OUT/TABLE3.con.errors.by.size.class.csv")

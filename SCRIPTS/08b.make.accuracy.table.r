@@ -350,4 +350,4 @@ colnames(errors) <- c("Size Class",
                       "Relative error")
 
 
-write.csv(errors, "../OUT/TABLE.errors.by.size.class.csv")
+write.csv(errors, "../OUT/TABLE2.errors.by.size.class.csv")
