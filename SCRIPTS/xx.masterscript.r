@@ -40,3 +40,6 @@ source("../SCRIPTS/09b.make.consistency.table.r")
 
 # weather analysis
 source("../SCRIPTS/10.weather.conditions.analysis.r")
+
+# miscellaneous analyses
+source("../SCRIPTS/11.misc.analyses.r")

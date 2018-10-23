@@ -16,9 +16,26 @@ diamerror$`10cm`[which(diamerror$value.real > 10)] <- ">10"
 t.test(diamerror$error ~ diamerror$`10cm`)
 
 
-max(alllenerror$diam, na.rm = T)
 
 
+# 5 cm interior internodes
+
+lenerror <- as.data.frame(lb$diam[which(is.na(lb$error.date1) == FALSE)])
+lenerror$error <- lb$error.date1[which(is.na(lb$error.date1) == FALSE)]
+lenerror$perror <- lb$perror.date1[which(is.na(lb$perror.date1) ==FALSE)]
+colnames(lenerror) <- c("diam", "error", "perror")
+
+lenerror2 <- as.data.frame(lb$diam[which(is.na(lb$error.date2) == FALSE)])
+lenerror2$error <- lb$error.date2[which(is.na(lb$error.date2) == FALSE)]
+lenerror2$perror <- lb$perror.date2[which(is.na(lb$perror.date2) ==FALSE)]
+colnames(lenerror2) <- c("diam", "error", "perror")
+
+alllenerror <- rbind(lenerror, lenerror2)
+
+alllenerror$`5cm` <- "<5"
+alllenerror$`5cm`[which(alllenerror$diam >= 5)] <- ">5"
+
+t.test(alllenerror$perror ~ alllenerror$`5cm`)
 
 
 # consistency
