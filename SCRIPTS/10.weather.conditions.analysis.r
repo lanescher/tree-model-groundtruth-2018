@@ -88,7 +88,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of \n interior segments (cm)") +
+  labs(x = "", y = "difference of \n interior internodes (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -109,7 +109,7 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of \n distal segments (cm)") +
+  labs(x = "", y = "difference of \n distal internodes (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),

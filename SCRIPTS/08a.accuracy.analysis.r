@@ -23,7 +23,9 @@ ds <- ggplot() +
   ylim(-5, 15) +
   labs(x = "", y = "diameter \n error (cm)") +
   geom_hline(yintercept = 0, color = "grey55") +
-  theme(panel.background = element_rect(fill = "white", colour = "grey50"))
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10))
   
 
 
@@ -47,10 +49,12 @@ ls <- ggplot() +
                  color = lb$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "", y = "interior segment \n error (cm)") +
+  labs(x = "", y = "interior internode \n error (cm)") +
   xlim(0,40) +
   geom_hline(yintercept = 0, color = "grey55") +
-  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10)) 
 
 ## and length to end
 mm <- as.data.frame(le$error.date1)
@@ -71,10 +75,12 @@ les <- ggplot() +
                  color = le$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "branch diameter (cm)", y = "distal segment \n error (cm)") +
+  labs(x = "branch diameter (cm)", y = "distal internode \n error (cm)") +
   xlim(0,18) +
   geom_hline(yintercept = 0, color = "grey55") +
-  theme(panel.background = element_rect(fill = "white", colour = "grey50")) 
+  theme(panel.background = element_rect(fill = "white", colour = "grey50"),
+        axis.text=element_text(size=10),
+        axis.title=element_text(size=10)) 
 
 
 figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
