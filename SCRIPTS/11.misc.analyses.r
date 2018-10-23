@@ -36,3 +36,18 @@ d.all.data$`10`[which(d.all.data$value.real >= 10)] <- ">10"
 t.test(d.all.data$perror ~ d.all.data$`10`)
 
 
+
+# elm distal segments compared to wal and oak
+
+distal <- l.all.data[which(l.all.data$endpoint == "end"),]
+distal$tree2 <- "not" 
+distal$tree2[which(distal$tree == "elm")] <- "elm"
+
+distal1 <- distal[c("diam", "error.date1", "tree2")]
+distal2 <- distal[c("diam", "error.date2", "tree2")]
+colnames(distal1) <- c("diam", "error", "tree")
+colnames(distal2) <- c("diam", "error", "tree")
+
+distalcomb <- rbind(distal1, distal2)
+
+t.test(distalcomb$error ~ distalcomb$tree)
