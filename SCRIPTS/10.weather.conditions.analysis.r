@@ -59,7 +59,7 @@ lighten <- function(color, factor=1.25){
 }
 
 
-d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x), 
+d. <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x), 
                                  fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -81,7 +81,7 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
 
 
 
-lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
+l.b <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
@@ -102,7 +102,7 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
 
 
 
-le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
+l.e <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue", 1.5), 
@@ -122,7 +122,7 @@ le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
   scale_x_discrete(labels = c("Elm", "Oak", "Walnut"))
 
 
-figure <- ggarrange(d, lb, le, labels = c("A", "B", "C"),
+figure <- ggarrange(d., l.b, l.e, labels = c("A", "B", "C"),
           ncol = 1, nrow = 3,
           align = "hv")
 ggsave(plot = figure, "../OUT/FIGURE3.lightconditions.error.jpg",

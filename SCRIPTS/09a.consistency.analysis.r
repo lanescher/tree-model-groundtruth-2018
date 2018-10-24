@@ -1,7 +1,7 @@
 # consistency analysis
 
 # diameter consistency error ----
-dc <- ggplot(data = d.all.data, aes(x = d.all.data$value.real, y = abs(d.all.data$error))) +
+d.c <- ggplot(data = d.all.data, aes(x = d.all.data$value.real, y = abs(d.all.data$error))) +
   geom_point(aes(color = d.all.data$tree)) +
   labs(x = "branch diameter", y = "diameter error (cm)") +
   geom_hline(yintercept = 0, color = "grey45") +
@@ -13,7 +13,7 @@ dc <- ggplot(data = d.all.data, aes(x = d.all.data$value.real, y = abs(d.all.dat
                      labels = c("Elm", "Oak", "Walnut"))
 
 # length to branch consistency error ----
-lbc <- ggplot(data = lb, aes(x = lb$diam, y = abs(lb$error))) +
+l.bc <- ggplot(data = lb, aes(x = lb$diam, y = abs(lb$error))) +
   geom_point(aes(color = lb$tree)) +
   labs(x = "branch diameter", y = "length error (cm) - to node") +
   geom_hline(yintercept = 0, color = "grey45") +
@@ -25,7 +25,7 @@ lbc <- ggplot(data = lb, aes(x = lb$diam, y = abs(lb$error))) +
                      labels = c("Elm", "Oak", "Walnut"))
 
 # length to end consistency error ----
-lec <- ggplot(data = le, aes(x = le$diam, y = abs(le$error))) +
+l.ec <- ggplot(data = le, aes(x = le$diam, y = abs(le$error))) +
   geom_point(aes(color = le$tree)) +
   labs(x = "branch diameter", y = "length error (cm) - to end") +
   geom_hline(yintercept = 0, color = "grey45") +
@@ -37,7 +37,7 @@ lec <- ggplot(data = le, aes(x = le$diam, y = abs(le$error))) +
                      labels = c("Elm", "Oak", "Walnut"))
 
 
-figure <- ggarrange(dc, lbc, lec, ncol = 3, nrow = 1, labels = c("A", "B", "C"),
+figure <- ggarrange(d.c, l.bc, l.ec, ncol = 3, nrow = 1, labels = c("A", "B", "C"),
           align = "hv", common.legend = TRUE, legend = "bottom",
           label.x = .88, label.y = .97)
 ggsave(plot = figure, "../OUT/FIGURE.consistency.jpg",

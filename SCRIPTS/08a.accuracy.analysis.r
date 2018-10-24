@@ -11,7 +11,7 @@ d.all.data$min[which(d.all.data$min == Inf)] <- NA
 d.all.data$max[which(d.all.data$max == Inf)] <- NA
 
 
-ds <- ggplot() +
+d.s <- ggplot() +
   geom_linerange(data=d.all.data, 
                  mapping=aes(x=d.all.data$value.real, 
                              ymin=d.all.data$min, 
@@ -41,7 +41,7 @@ lb$min[which(lb$min == Inf)] <- NA
 lb$max[which(lb$max == Inf)] <- NA
 
 
-ls <- ggplot() +
+l.s <- ggplot() +
   geom_linerange(data=lb, 
                  mapping=aes(x=lb$diam, 
                              ymin=lb$min, 
@@ -67,7 +67,7 @@ le$min[which(le$min == Inf)] <- NA
 le$max[which(le$max == Inf)] <- NA
 
 
-les <- ggplot() +
+l.es <- ggplot() +
   geom_linerange(data=le, 
                  mapping=aes(x=le$diam, 
                              ymin=le$min, 
@@ -83,7 +83,7 @@ les <- ggplot() +
         axis.title=element_text(size=10)) 
 
 
-figure <- ggarrange(ds, ls, les, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
+figure <- ggarrange(d.s, l.s, l.es, ncol = 1, nrow = 3, labels = c("A", "B", "C"),
           common.legend = TRUE, align = "hv")
 ggsave(plot = figure, "../OUT/FIGURE2.diam.length.accuracy.size.jpg", width = 3.3,
        height = 8)
