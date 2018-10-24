@@ -21,7 +21,7 @@ d.s <- ggplot() +
                  show.legend = TRUE) +
   xlim(0,40) +
   ylim(-5, 15) +
-  labs(x = "", y = "diameter \n error (cm)") +
+  labs(x = "", y = "error (cm)") +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -49,7 +49,7 @@ l.s <- ggplot() +
                  color = lb$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "", y = "interior internode \n error (cm)") +
+  labs(x = "", y = "error (cm)") +
   xlim(0,40) +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"),
@@ -75,7 +75,7 @@ l.es <- ggplot() +
                  color = le$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "branch diameter (cm)", y = "terminal internode \n error (cm)") +
+  labs(x = "branch diameter (cm)", y = "error (cm)") +
   xlim(0,18) +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"),

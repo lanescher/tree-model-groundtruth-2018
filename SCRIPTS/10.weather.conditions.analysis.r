@@ -66,7 +66,7 @@ d. <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2"))) +
-  labs(x = "", y = "diameter \n error (cm)") +
+  labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -88,7 +88,7 @@ l.b <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "interior internode \n error (cm)") +
+  labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -109,7 +109,7 @@ l.e <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "terminal internode \n error (cm)") +
+  labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
