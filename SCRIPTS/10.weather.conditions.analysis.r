@@ -64,9 +64,9 @@ d <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
                                darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue"),
+                               lighten("brown4"), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2"))) +
-  labs(x = "", y = "difference of \n diameters (cm)") +
+  labs(x = "", y = "diameter \n error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -86,9 +86,9 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
                                darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue"),
+                               lighten("brown4"), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of \n interior internodes (cm)") +
+  labs(x = "", y = "interior internode \n error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),
@@ -105,11 +105,11 @@ lb <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
 le <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
                               fill = interaction(tree, weather))) +
   geom_boxplot() +
-  scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
+  scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue", 1.5), 
                                darken("goldenrod2"), 
                                lighten("brown4"), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
-  labs(x = "", y = "difference of \n distal internodes (cm)") +
+  labs(x = "", y = "terminal internode \n error (cm)") +
   theme(legend.position = "none", 
         panel.background = element_rect(fill = "white", colour = "grey50"),
         axis.text=element_text(size=10),

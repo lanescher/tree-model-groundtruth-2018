@@ -75,7 +75,7 @@ les <- ggplot() +
                  color = le$color,
                  size = 0.4,
                  show.legend = TRUE) +
-  labs(x = "branch diameter (cm)", y = "distal internode \n error (cm)") +
+  labs(x = "branch diameter (cm)", y = "terminal internode \n error (cm)") +
   xlim(0,18) +
   geom_hline(yintercept = 0, color = "grey55") +
   theme(panel.background = element_rect(fill = "white", colour = "grey50"),
