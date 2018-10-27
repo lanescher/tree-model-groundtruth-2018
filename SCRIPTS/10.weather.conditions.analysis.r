@@ -64,7 +64,7 @@ d. <- ggplot(data = d.all.weather, aes(x = tree, y = abs(error.x),
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
                                darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue", 1.5),
+                               lighten("brown4", 1.5), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2"))) +
   labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
@@ -86,7 +86,7 @@ l.b <- ggplot(data = lb.weather, aes(x = tree, y = abs(error.x),
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue"), 
                                darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue", 1.5),
+                               lighten("brown4", 1.5), lighten("cornflowerblue", 1.5),
                                lighten("goldenrod2")))  +
   labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
@@ -107,7 +107,7 @@ l.e <- ggplot(data = le.weather, aes(x = tree, y = abs(error.x),
   geom_boxplot() +
   scale_fill_manual(values = c(darken("brown4", 1.1), darken("cornflowerblue", 1.5), 
                                darken("goldenrod2"), 
-                               lighten("brown4"), lighten("cornflowerblue"),
+                               lighten("brown4", 1.5), lighten("cornflowerblue"),
                                lighten("goldenrod2")))  +
   labs(x = "", y = "error (cm)") +
   theme(legend.position = "none", 
