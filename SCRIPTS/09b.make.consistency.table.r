@@ -3,7 +3,7 @@
 
 stderr <- function(x) sd(x)/sqrt(length(x))
 
-# classes will be <5, 5-10, 10-20, 30-40, 40+
+# classes will be <3, 3-5, 5-10, 10-20, 30-40, 40+
 
 
 # make df with diam errors
@@ -17,67 +17,79 @@ colnames(diamerror) <- c("value.real", "error", "perror")
 
 alldiamerror <- diamerror
 
-classes <- c("<5", "5-10", "10-20", "20-30", ">30")
+classes <- c("<3", "3-5", "5-10", "10-20", "20-30", ">30")
 err <- as.data.frame(classes)
 err$no <- NA
 err$diam.abs <- NA
 err$diam.rel <- NA
 
-# class <5 
-n <- length(alldiamerror$value.real[which(alldiamerror$value.real < 5)])
+# class <3
+n <- length(alldiamerror$value.real[which(alldiamerror$value.real < 3)])
 err[1,2] <- n
-m <- mean(alldiamerror$error[which(alldiamerror$value.real < 5)])
-std <- stderr(alldiamerror$error[which(alldiamerror$value.real < 5)])
+m <- mean(alldiamerror$error[which(alldiamerror$value.real < 3)])
+std <- stderr(alldiamerror$error[which(alldiamerror$value.real < 3)])
 err[1,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alldiamerror$perror[which(alldiamerror$value.real < 5)])
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real < 3)])
 err[1,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 5-10
-n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
+# class 3-5
+n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 3 & alldiamerror$value.real < 5)])
 err[2,2] <- n
-m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
-std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
+m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 3 & alldiamerror$value.real < 5)])
+std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 3 & alldiamerror$value.real < 5)])
 err[2,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 3 & alldiamerror$value.real < 5)])
 err[2,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 10-20
-n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+
+# class 5-10
+n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
 err[3,2] <- n
-m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
-std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
+std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
 err[3,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 5 & alldiamerror$value.real < 10)])
 err[3,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+# class 10-20
+n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+err[4,2] <- n
+m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 10 & alldiamerror$value.real < 20)])
+err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 
 # class 20-30
 n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 20 & alldiamerror$value.real < 30)])
-err[4,2] <- n
+err[5,2] <- n
 m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 20 & alldiamerror$value.real < 30)])
 std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 20 & alldiamerror$value.real < 30)])
-err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
-                  format(round(std, 2), nsmall = 2))
-
-drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 20 & alldiamerror$value.real < 30)])
-err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
-
-# class 30+
-n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 30)])
-err[5,2] <- n
-m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 30)])
-std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 30)])
 err[5,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 30)])
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 20 & alldiamerror$value.real < 30)])
 err[5,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+# class 30+
+n <- length(alldiamerror$value.real[which(alldiamerror$value.real >= 30)])
+err[6,2] <- n
+m <- mean(alldiamerror$error[which(alldiamerror$value.real >= 30)])
+std <- stderr(alldiamerror$error[which(alldiamerror$value.real >= 30)])
+err[6,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alldiamerror$perror[which(alldiamerror$value.real >= 30)])
+err[6,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 diam.error.table <- err
 
@@ -97,67 +109,79 @@ alllenerror <- lenerror
 
 
 
-classes <- c("<5", "5-10", "10-20", "20-30", ">30")
+classes <- c("<3", "3-5", "5-10", "10-20", "20-30", ">30")
 err <- as.data.frame(classes)
 err$no <- NA
 err$diam.abs <- NA
 err$diam.rel <- NA
 
-# class <5 
-n <- length(alllenerror$diam[which(alllenerror$diam < 5)])
+# class < 3
+n <- length(alllenerror$diam[which(alllenerror$diam < 3)])
 err[1,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam < 5)])
-std <- stderr(alllenerror$error[which(alllenerror$diam < 5)])
+m <- mean(alllenerror$error[which(alllenerror$diam < 3)])
+std <- stderr(alllenerror$error[which(alllenerror$diam < 3)])
 err[1,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam < 5)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam < 3)])
 err[1,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 5-10
-n <- length(alllenerror$diam[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+# class 3-5
+n <- length(alllenerror$diam[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+m <- mean(alllenerror$error[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 10-20
-n <- length(alllenerror$diam[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+# class 5-10
+n <- length(alllenerror$diam[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+m <- mean(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+
+# class 10-20
+n <- length(alllenerror$diam[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,2] <- n
+m <- mean(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 
 # class 20-30
 n <- length(alllenerror$diam[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,2] <- n
+err[5,2] <- n
 m <- mean(alllenerror$error[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
 std <- stderr(alllenerror$error[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
-                  format(round(std, 2), nsmall = 2))
-
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
-
-# class 30+
-n <- length(alllenerror$diam[which(alllenerror$diam >= 30)])
-err[5,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 30)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 30)])
 err[5,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 30)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
 err[5,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+# class 30+
+n <- length(alllenerror$diam[which(alllenerror$diam >= 30)])
+err[6,2] <- n
+m <- mean(alllenerror$error[which(alllenerror$diam >= 30)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 30)])
+err[6,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 30)])
+err[6,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 len.error.table <- err
 
@@ -177,67 +201,79 @@ alllenerror <- lenerror
 
 
 
-classes <- c("<5", "5-10", "10-20", "20-30", ">30")
+classes <- c("<3", "3-5", "5-10", "10-20", "20-30", ">30")
 err <- as.data.frame(classes)
 err$no <- NA
 err$diam.abs <- NA
 err$diam.rel <- NA
 
-# class <5 
-n <- length(alllenerror$diam[which(alllenerror$diam < 5)])
+# class <3
+n <- length(alllenerror$diam[which(alllenerror$diam < 3)])
 err[1,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam < 5)])
-std <- stderr(alllenerror$error[which(alllenerror$diam < 5)])
+m <- mean(alllenerror$error[which(alllenerror$diam < 3)])
+std <- stderr(alllenerror$error[which(alllenerror$diam < 3)])
 err[1,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam < 5)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam < 3)])
 err[1,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 5-10
-n <- length(alllenerror$diam[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+# class 3-5
+n <- length(alllenerror$diam[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+m <- mean(alllenerror$error[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 3 & alllenerror$diam < 5)])
 err[2,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
-# class 10-20
-n <- length(alllenerror$diam[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+
+# class 5-10
+n <- length(alllenerror$diam[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+m <- mean(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 5 & alllenerror$diam < 10)])
 err[3,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+# class 10-20
+n <- length(alllenerror$diam[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,2] <- n
+m <- mean(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 10 & alllenerror$diam < 20)])
+err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 
 # class 20-30
 n <- length(alllenerror$diam[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,2] <- n
+err[5,2] <- n
 m <- mean(alllenerror$error[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
 std <- stderr(alllenerror$error[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
-                  format(round(std, 2), nsmall = 2))
-
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
-err[4,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
-
-# class 30+
-n <- length(alllenerror$diam[which(alllenerror$diam >= 30)])
-err[5,2] <- n
-m <- mean(alllenerror$error[which(alllenerror$diam >= 30)])
-std <- stderr(alllenerror$error[which(alllenerror$diam >= 30)])
 err[5,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
                   format(round(std, 2), nsmall = 2))
 
-drel <- mean(alllenerror$perror[which(alllenerror$diam >= 30)])
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 20 & alllenerror$diam < 30)])
 err[5,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
+
+# class 30+
+n <- length(alllenerror$diam[which(alllenerror$diam >= 30)])
+err[6,2] <- n
+m <- mean(alllenerror$error[which(alllenerror$diam >= 30)])
+std <- stderr(alllenerror$error[which(alllenerror$diam >= 30)])
+err[6,3] <- paste(format(round(m, 2), nsmall = 2), "+-", 
+                  format(round(std, 2), nsmall = 2))
+
+drel <- mean(alllenerror$perror[which(alllenerror$diam >= 30)])
+err[6,4] <- paste0(format(round(drel, 2), nsmall = 2), "%")
 
 lene.error.table <- err
 
@@ -255,4 +291,4 @@ colnames(conerrors) <- c("Size Class",
                       "Relative difference")
 
 
-write.csv(conerrors, "../OUT/TABLE3.con.errors.by.size.class.csv")
+write.csv(conerrors, "../OUT/TABLE3.con.errors.by.size.class2.csv")
