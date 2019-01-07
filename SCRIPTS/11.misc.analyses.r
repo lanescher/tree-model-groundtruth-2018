@@ -68,3 +68,13 @@ colnames(distal2) <- c("diam", "error", "tree")
 distalcomb <- rbind(distal1, distal2)
 
 t.test(distalcomb$error ~ distalcomb$tree)
+
+# oak and elm diameter
+
+oakelm <- d.all.weather[which(d.all.weather$tree != "walnut2"),]
+oakelmS <- oakelm[which(oakelm$weather == "sunny"),]
+oakelmO <- oakelm[which(oakelm$weather == "overcast"),]
+
+errorDiff <- mean(oakelmS$error.x, na.rm = T) - mean(oakelmO$error.x, na.rm = T)
+
+t.test(oakelmS$error.x, oakelmO$error.x)
