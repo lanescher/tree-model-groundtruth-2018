@@ -1,7 +1,7 @@
 ,Diameters,,,,Interior internodes,,,,Terminal internodes,,,
-Size Class,Number measured,Average error (cm),Average error magnitude (cm),Relative error,Number measured,Average error (cm),Average error magnitude (cm),Relative error,Number measured,Average error (cm),Average error magnitude (cm),Relative error
-<5,531,2.23 +- 0.10,2.40 +- 0.09,122.03%,81,-2.15,4.20 +- 0.49,16.81%,419,-46.26,49.43 +- 2.51,102.66%
-10-May,338,1.58 +- 0.12,2.02 +- 0.10,29.64%,193,-1.37,4.11 +- 0.32,11.16%,107,-74.44,78.92 +- 10.15,152.14%
-20-Oct,208,1.12 +- 0.13,1.58 +- 0.10,11.48%,166,0.00 +- 0.39,3.58 +- 0.27,8.74%,12,-72.21,50.89 +- 21.32,22.43%
-20-30,34,0.72 +- 0.34,1.70 +- 0.21,7.01%,23,-2.05,3.56 +- 0.69,6.00%,0,-,-,-
->30,10,1.77 +- 0.81,1.99 +- 0.75,5.92%,4,-2.39,3.12 +- 1.04,2.99%,0,-,-,-
+Size Class,Number measured,Mean error (cm),Mean error magnitude (cm),Relative error,Number measured,Mean error (cm),Mean error magnitude (cm),Relative error,Number measured,Mean error (cm),Mean error magnitude (cm),Relative error
+<5,531,2.23 +- 0.10,2.40 +- 0.09,122.03%,81,-1.5 +- 0.65,4.20 +- 0.49,16.81%,419,-43.50 +- 2.76,49.43 +- 2.51,102.66%
+5-10,338,1.58 +- 0.12,2.02 +- 0.10,29.64%,193,-0.94 +- 0.43,4.11 +- 0.32,11.16%,107,-63.31 +- 11.13,78.92 +- 10.15,152.14%
+10-20,208,1.12 +- 0.13,1.58 +- 0.10,11.48%,166,0.00 +- 0.39,3.58 +- 0.27,8.74%,12,-50.89 +- 21.32,50.89 +- 21.32,22.43%
+20-30,34,0.72 +- 0.34,1.70 +- 0.21,7.01%,23,-1.05 +- 1.00,3.56 +- 0.69,6.00%,0,-,-,-
+>30,10,1.77 +- 0.81,1.99 +- 0.75,5.92%,4,-0.32 +- 2.07,3.12 +- 1.04,2.99%,0,-,-,-
