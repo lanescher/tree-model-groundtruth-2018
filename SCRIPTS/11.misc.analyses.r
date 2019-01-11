@@ -78,3 +78,45 @@ oakelmO <- oakelm[which(oakelm$weather == "overcast"),]
 errorDiff <- mean(oakelmS$error.x, na.rm = T) - mean(oakelmO$error.x, na.rm = T)
 
 t.test(oakelmS$error.x, oakelmO$error.x)
+
+
+# R2 values ----
+
+diams.real <- d.all.data$value.real[which(d.all.data$value.real != "b")]
+diams.date1 <- d.all.data$value.date1[which(d.all.data$value.real != "b")]
+diams.date2 <- d.all.data$value.date2[which(d.all.data$value.real != "b")]
+
+diams1 <- as.data.frame(c(diams.real, diams.real))
+diams2 <- as.data.frame(c(diams.date1, diams.date2))
+
+diams <- cbind(diams1, diams2)
+colnames(diams) <- c("real", "measured")
+
+summary(lm(diams$real ~ diams$measured))
+
+
+
+diams.real <- lb$value.real[which(lb$value.real != "b")]
+diams.date1 <- lb$value.date1[which(lb$value.real != "b")]
+diams.date2 <- lb$value.date2[which(lb$value.real != "b")]
+
+diams1 <- as.data.frame(c(diams.real, diams.real))
+diams2 <- as.data.frame(c(diams.date1, diams.date2))
+
+diams <- cbind(diams1, diams2)
+colnames(diams) <- c("real", "measured")
+
+summary(lm(diams$real ~ diams$measured))
+
+
+diams.real <- le$value.real[which(lb$value.real != "b")]
+diams.date1 <- le$value.date1[which(lb$value.real != "b")]
+diams.date2 <- le$value.date2[which(lb$value.real != "b")]
+
+diams1 <- as.data.frame(c(diams.real, diams.real))
+diams2 <- as.data.frame(c(diams.date1, diams.date2))
+
+diams <- cbind(diams1, diams2)
+colnames(diams) <- c("real", "measured")
+
+summary(lm(diams$real ~ diams$measured))
